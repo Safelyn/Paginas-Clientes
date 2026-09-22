@@ -32,11 +32,8 @@
   .card { width: 100%; max-width: 420px; }
   .avatar {
     width: 104px; height: 104px; margin: 0 auto 22px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(155deg, var(--rose) 0%, var(--berry) 100%);
+    display: block; object-fit: cover;
     box-shadow: 0 0 0 3px var(--cream), 0 0 0 4px var(--sand);
-    font-family: "Fraunces", Georgia, serif;
-    font-size: 34px; font-weight: 600; color: var(--cream); letter-spacing: 0.02em;
   }
   h1 {
     font-family: "Fraunces", Georgia, serif;
@@ -58,6 +55,15 @@
   .socials a:hover, .socials a:focus-visible {
     border-color: var(--berry); background: var(--rose); color: var(--berry-deep); transform: translateY(-2px);
   }
+  .tiktok-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 18px; text-align: center; margin: 0 0 16px; color: var(--ink);
+  }
+  .tiktok-grid {
+    display: flex; gap: 12px; overflow-x: auto;
+    padding-bottom: 8px; margin-bottom: 28px;
+  }
+  .tiktok-grid > * { flex: none; }
   .divider { height: 1px; background: var(--line); margin: 0 0 24px; }
   .links { display: flex; flex-direction: column; gap: 12px; }
   .link-cta, .link-card {
@@ -94,28 +100,41 @@
 <body>
 
   <main class="card">
-    <div class="avatar" id="avatar" aria-hidden="true">SS</div>
+    <img class="avatar" id="avatar" src="foto.jpg" alt="Foto de perfil de Sara">
     <h1 id="nombre">Sara Sucerqui Nails</h1>
     <p class="tagline" id="tagline">Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mirá mis últimos diseños.</p>
+
     <nav class="socials" id="socials" aria-label="Redes sociales"></nav>
+
+    <h2 class="tiktok-title">Mis videos</h2>
+    <div class="tiktok-grid">
+      <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZSqEanMw5/" data-video-id="" style="max-width: 260px;min-width: 220px;">
+        <section></section>
+      </blockquote>
+      <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZSqEaWRpR/" data-video-id="" style="max-width: 260px;min-width: 220px;">
+        <section></section>
+      </blockquote>
+    </div>
+    <script async src="https://www.tiktok.com/embed.js"></script>
+
     <div class="divider"></div>
+
     <div class="links" id="links"></div>
+
     <footer>Hecho a mano, sin rastreadores de terceros.</footer>
   </main>
 
 <script>
   const perfil = {
     nombre: "Sara Sucerqui Nails",
-    iniciales: "SS",
     tagline: "Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mirá mis últimos diseños.",
     redes: [
       { tipo: "instagram", url: "https://instagram.com/sarasucerquianails" },
       { tipo: "tiktok",     url: "https://tiktok.com/@sarasucerquianails" },
-      { tipo: "whatsapp",   url: "https://wa.me/573006306367" },
+      { tipo: "whatsapp",   url: "https://wa.me/573000000000" },
     ],
     enlaces: [
-      { texto: "Agenda tu cita por WhatsApp", url: "https://wa.me/573006306367", tipo: "cta" },
-      { texto: "Ver mis diseños en TikTok",   url: "https://tiktok.com/@sarasucerquianails", tipo: "card", icono: "tiktok" },
+      { texto: "Agenda tu cita por WhatsApp", url: "https://wa.me/573000000000", tipo: "cta" },
       { texto: "Seguime en Instagram",        url: "https://instagram.com/sarasucerquianails", tipo: "card", icono: "instagram" },
       { texto: "Dejá tu reseña en Google",    url: "https://g.page/r/example/review", tipo: "card", icono: "google" },
     ]
@@ -130,7 +149,6 @@
 
   document.getElementById("nombre").textContent = perfil.nombre;
   document.getElementById("tagline").textContent = perfil.tagline;
-  document.getElementById("avatar").textContent = perfil.iniciales;
   document.title = perfil.nombre;
 
   const socialsEl = document.getElementById("socials");
