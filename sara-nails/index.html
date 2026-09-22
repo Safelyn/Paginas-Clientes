@@ -110,4 +110,55 @@
     tagline: "Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mirá mis últimos diseños.",
     redes: [
       { tipo: "instagram", url: "https://instagram.com/sarasucerquianails" },
-      { tipo: "tiktok",     url: "https://tiktok.com/@sarasucerquianails"
+      { tipo: "tiktok",     url: "https://tiktok.com/@sarasucerquianails" },
+      { tipo: "whatsapp",   url: "https://wa.me/573006306367" },
+    ],
+    enlaces: [
+      { texto: "Agenda tu cita por WhatsApp", url: "https://wa.me/573006306367", tipo: "cta" },
+      { texto: "Ver mis diseños en TikTok",   url: "https://tiktok.com/@sarasucerquianails", tipo: "card", icono: "tiktok" },
+      { texto: "Seguime en Instagram",        url: "https://instagram.com/sarasucerquianails", tipo: "card", icono: "instagram" },
+      { texto: "Dejá tu reseña en Google",    url: "https://g.page/r/example/review", tipo: "card", icono: "google" },
+    ]
+  };
+
+  const ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>',
+    google: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>'
+  };
+
+  document.getElementById("nombre").textContent = perfil.nombre;
+  document.getElementById("tagline").textContent = perfil.tagline;
+  document.getElementById("avatar").textContent = perfil.iniciales;
+  document.title = perfil.nombre;
+
+  const socialsEl = document.getElementById("socials");
+  perfil.redes.forEach(r => {
+    const a = document.createElement("a");
+    a.href = r.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", r.tipo);
+    a.innerHTML = ICONS[r.tipo] || "";
+    socialsEl.appendChild(a);
+  });
+
+  const linksEl = document.getElementById("links");
+  perfil.enlaces.forEach(l => {
+    const a = document.createElement("a");
+    a.href = l.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    if (l.tipo === "cta") {
+      a.className = "link-cta";
+      a.textContent = l.texto;
+    } else {
+      a.className = "link-card";
+      a.innerHTML = `<span class="icon">${ICONS[l.icono] || ""}</span><span>${l.texto}</span>`;
+    }
+    linksEl.appendChild(a);
+  });
+</script>
+</body>
+</html>
