@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sara Sucerqui Nails</title>
+<meta name="description" content="Perfil de contacto y redes de Sara Sucerqui Nails.">
+
+<style>
+  :root {
+    --ink: #241820;
+    --cream: #FAF3EC;
+    --rose: #D9A6A2;
+    --rose-deep: #B97E7C;
+    --berry: #7A2E3A;
+    --berry-deep: #5C2029;
+    --sand: #C9AD84;
+    --line: rgba(36, 24, 32, 0.12);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: calc(48px + env(safe-area-inset-top, 0px)) 20px calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+  .card { width: 100%; max-width: 420px; }
+  .avatar {
+    width: 104px; height: 104px; margin: 0 auto 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(155deg, var(--rose) 0%, var(--berry) 100%);
+    box-shadow: 0 0 0 3px var(--cream), 0 0 0 4px var(--sand);
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 34px; font-weight: 600; color: var(--cream); letter-spacing: 0.02em;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-optical-sizing: auto; font-weight: 560; font-size: 30px; line-height: 1.15;
+    text-align: center; margin: 0 0 8px; color: var(--ink);
+  }
+  .tagline {
+    text-align: center; font-size: 15px; line-height: 1.5;
+    color: color-mix(in srgb, var(--ink) 62%, transparent);
+    margin: 0 0 28px; max-width: 34ch; margin-left: auto; margin-right: auto;
+  }
+  .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 32px; }
+  .socials a {
+    width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .socials a svg { width: 20px; height: 20px; }
+  .socials a:hover, .socials a:focus-visible {
+    border-color: var(--berry); background: var(--rose); color: var(--berry-deep); transform: translateY(-2px);
+  }
+  .divider { height: 1px; background: var(--line); margin: 0 0 24px; }
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-cta, .link-card {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 16px 18px;
+    border-radius: 14px; text-decoration: none; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .link-cta {
+    background: var(--berry); color: var(--cream); border-color: var(--berry);
+    font-family: "Fraunces", Georgia, serif; font-size: 17px; font-weight: 560; justify-content: center;
+  }
+  .link-card { background: #fff; color: var(--ink); }
+  .link-card .icon { flex: none; width: 22px; height: 22px; color: var(--berry); }
+  .link-cta:hover, .link-cta:focus-visible {
+    background: var(--berry-deep); border-color: var(--berry-deep); transform: translateY(-1px);
+  }
+  .link-card:hover, .link-card:focus-visible {
+    border-color: var(--rose-deep); box-shadow: 0 6px 18px -12px rgba(36, 24, 32, 0.35); transform: translateY(-1px);
+  }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--berry); outline-offset: 2px; }
+  footer {
+    text-align: center; margin-top: 40px; font-size: 12px;
+    color: color-mix(in srgb, var(--ink) 45%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --cream: #1B1417; --ink: #F3E9E4; --line: rgba(243, 233, 228, 0.14); }
+    :root:not([data-theme="light"]) .link-card { background: #241B1F; }
+    :root:not([data-theme="light"]) .socials a { background: #241B1F; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="card">
+    <div class="avatar" id="avatar" aria-hidden="true">SS</div>
+    <h1 id="nombre">Sara Sucerqui Nails</h1>
+    <p class="tagline" id="tagline">Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mirá mis últimos diseños.</p>
+    <nav class="socials" id="socials" aria-label="Redes sociales"></nav>
+    <div class="divider"></div>
+    <div class="links" id="links"></div>
+    <footer>Hecho a mano, sin rastreadores de terceros.</footer>
+  </main>
+
+<script>
+  const perfil = {
+    nombre: "Sara Sucerqui Nails",
+    iniciales: "SS",
+    tagline: "Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mirá mis últimos diseños.",
+    redes: [
+      { tipo: "instagram", url: "https://instagram.com/sarasucerquianails" },
+      { tipo: "tiktok",     url: "https://tiktok.com/@sarasucerquianails"
