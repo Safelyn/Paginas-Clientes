@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sara Sucerquia Nails</title>
 <meta name="description" content="Uñas semipermanentes y nail art en Medellín. Agenda tu cita con Sara por WhatsApp.">
-<meta name="theme-color" content="#FAF3EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#F6E4E1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1417" media="(prefers-color-scheme: dark)">
 
-<!-- Vista previa al compartir (WhatsApp, Instagram, Facebook). Actualiza las URLs cuando tengas el dominio de Netlify. -->
+<!-- Vista previa al compartir (WhatsApp, Instagram, Facebook) -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:title" content="Sara Sucerquia Nails">
@@ -20,12 +20,14 @@
 
 <link rel="icon" type="image/jpeg" href="avatar.jpg">
 <link rel="apple-touch-icon" href="avatar.jpg">
+<link rel="preload" as="image" href="videos/rojas.jpg">
 
 <style>
   :root {
     --ink: #241820;
     --muted: #6B5A63;
     --cream: #FAF3EC;
+    --blush: #F6E4E1;
     --surface: #fff;
     --rose: #D9A6A2;
     --rose-deep: #B97E7C;
@@ -34,6 +36,7 @@
     --on-berry: #FAF3EC;
     --sand: #C9AD84;
     --line: rgba(36, 24, 32, 0.12);
+    --shadow: 0 14px 30px -18px rgba(92, 32, 41, 0.55);
     --serif: Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
@@ -42,8 +45,10 @@
       --ink: #F3E9E4;
       --muted: #B8A9AF;
       --cream: #1B1417;
+      --blush: #2E1C22;
       --surface: #241B1F;
       --line: rgba(243, 233, 228, 0.14);
+      --shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.8);
     }
   }
   * { box-sizing: border-box; }
@@ -52,29 +57,42 @@
     margin: 0;
     min-height: 100vh;
     min-height: 100svh;
-    background: var(--cream);
+    background:
+      radial-gradient(120% 60% at 50% 0%, var(--blush) 0%, transparent 70%),
+      var(--cream);
+    background-repeat: no-repeat;
     color: var(--ink);
     font-family: var(--sans);
     display: flex;
     justify-content: center;
-    padding: calc(48px + env(safe-area-inset-top, 0px)) 20px calc(56px + env(safe-area-inset-bottom, 0px));
+    padding: calc(32px + env(safe-area-inset-top, 0px)) 20px calc(48px + env(safe-area-inset-bottom, 0px));
   }
   .card { width: 100%; max-width: 420px; }
+
+  /* Encabezado */
+  .avatar-ring {
+    width: 124px; height: 124px; margin: 0 auto 18px; border-radius: 50%; padding: 4px;
+    background: conic-gradient(from 200deg, var(--rose), var(--berry), var(--sand), var(--rose));
+  }
   .avatar {
-    width: 104px; height: 104px; margin: 0 auto 22px; border-radius: 50%;
-    display: block; object-fit: cover;
-    box-shadow: 0 0 0 3px var(--cream), 0 0 0 4px var(--sand);
+    width: 116px; height: 116px; border-radius: 50%; display: block; object-fit: cover;
+    border: 3px solid var(--cream);
   }
   h1 {
     font-family: var(--serif);
     font-weight: 600; font-size: 30px; line-height: 1.15;
-    text-align: center; margin: 0 0 8px; color: var(--ink);
+    text-align: center; margin: 0 0 10px; color: var(--ink);
+  }
+  .badge {
+    display: block; width: fit-content; margin: 0 auto 12px; padding: 5px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--berry); background: var(--surface); border: 1px solid var(--line);
   }
   .tagline {
     text-align: center; font-size: 15px; line-height: 1.5; color: var(--muted);
-    margin: 0 auto 28px; max-width: 34ch;
+    margin: 0 auto 20px; max-width: 32ch;
   }
-  .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 32px; }
+  .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 24px; }
   .socials a {
     width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
     background: var(--surface); display: flex; align-items: center; justify-content: center;
@@ -84,61 +102,92 @@
   .socials a:hover, .socials a:focus-visible {
     border-color: var(--berry); background: var(--rose); color: var(--berry-deep); transform: translateY(-2px);
   }
-  .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .link-cta, .link-card {
-    display: flex; align-items: center; gap: 12px; width: 100%; padding: 16px 18px;
-    border-radius: 14px; text-decoration: none; font-size: 15px; font-weight: 500;
-    border: 1px solid var(--line);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-  }
+
+  /* Botón principal */
   .link-cta {
-    background: var(--berry); color: var(--on-berry); border-color: var(--berry);
-    font-family: var(--serif); font-size: 17px; font-weight: 600; justify-content: center;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 17px 14px; margin-bottom: 28px; border-radius: 16px;
+    text-decoration: none; text-align: center;
+    font-family: var(--serif); font-size: clamp(15px, 4.3vw, 18px); font-weight: 600;
+    background: linear-gradient(135deg, var(--berry), var(--berry-deep));
+    color: var(--on-berry); box-shadow: var(--shadow);
+    animation: pulse 2.6s ease-in-out infinite;
+    transition: transform 0.15s ease;
   }
-  .link-card { background: var(--surface); color: var(--ink); }
-  .link-card .icon { flex: none; width: 22px; height: 22px; color: var(--berry); }
-  .link-cta:hover, .link-cta:focus-visible {
-    background: var(--berry-deep); border-color: var(--berry-deep); transform: translateY(-1px);
+  .link-cta svg { width: 22px; height: 22px; flex: none; }
+  .link-cta::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shine 3.5s ease-in-out infinite;
   }
-  .link-card:hover, .link-card:focus-visible {
-    border-color: var(--rose-deep); box-shadow: 0 6px 18px -12px rgba(36, 24, 32, 0.35); transform: translateY(-1px);
+  .link-cta:hover, .link-cta:focus-visible { transform: translateY(-1px); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(122, 46, 58, 0.35); }
+    50% { box-shadow: var(--shadow), 0 0 0 8px rgba(122, 46, 58, 0); }
   }
-  .divider { height: 1px; background: var(--line); margin: 0 0 24px; }
-  .videos-title {
-    font-family: var(--serif);
-    font-size: 18px; text-align: center; margin: 0 0 4px; color: var(--ink);
+  @keyframes shine {
+    0%, 60% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
-  .videos-note { text-align: center; font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+
+  /* Videos */
+  .section-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 600;
+    margin: 0 0 12px; color: var(--ink);
+  }
   .videos {
     display: flex; gap: 12px; overflow-x: auto;
-    padding-bottom: 8px; scroll-snap-type: x mandatory;
+    margin: 0 -20px 16px; padding: 0 20px 10px;
+    scroll-snap-type: x mandatory; scroll-padding: 0 20px;
+    scrollbar-width: none;
   }
-  .videos > * { flex: none; scroll-snap-align: start; }
-  .video-facade {
-    width: 200px; aspect-ratio: 9 / 16; border-radius: 14px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-    text-decoration: none; color: var(--on-berry); font-size: 15px; font-weight: 500;
-    background: linear-gradient(160deg, var(--rose-deep), var(--berry-deep));
+  .videos::-webkit-scrollbar { display: none; }
+  .clip {
+    position: relative; flex: none; width: min(62vw, 230px); aspect-ratio: 9 / 16;
+    margin: 0; border-radius: 18px; overflow: hidden; scroll-snap-align: start;
+    background: var(--blush); box-shadow: var(--shadow);
   }
-  .video-facade .play {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: rgba(250, 243, 236, 0.18); display: flex; align-items: center; justify-content: center;
+  .clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .clip figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+    color: #fff; font-size: 14px; font-weight: 600; pointer-events: none;
   }
-  .video-facade .play svg { width: 24px; height: 24px; margin-left: 3px; }
-  .videos iframe { width: 260px; height: 740px; border: 0; border-radius: 14px; background: var(--surface); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--berry); outline-offset: 2px; }
+
+  /* Enlaces secundarios */
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-card {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 16px 18px;
+    border-radius: 14px; text-decoration: none; font-size: 15px; font-weight: 500;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .link-card .icon { flex: none; width: 22px; height: 22px; color: var(--berry); }
+  .link-card .arrow { margin-left: auto; color: var(--muted); }
+  .link-card:hover, .link-card:focus-visible {
+    border-color: var(--rose-deep); box-shadow: var(--shadow); transform: translateY(-1px);
+  }
+
+  a:focus-visible { outline: 2px solid var(--berry); outline-offset: 2px; }
   footer {
-    text-align: center; margin-top: 40px; font-size: 12px; line-height: 1.5; color: var(--muted);
+    text-align: center; margin-top: 36px; font-size: 12px; line-height: 1.5; color: var(--muted);
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::after { transition: none !important; animation: none !important; }
+  }
 </style>
 </head>
 <body>
 
   <main class="card">
-    <img class="avatar" src="avatar.jpg" width="104" height="104" alt="Foto de Sara Sucerquia">
+    <div class="avatar-ring">
+      <img class="avatar" src="avatar.jpg" width="116" height="116" alt="Foto de Sara Sucerquia">
+    </div>
     <h1>Sara Sucerquia Nails</h1>
-    <p class="tagline">Uñas semipermanentes y nail art en Medellín. Agenda tu cita o mira mis últimos diseños.</p>
+    <span class="badge">Nail art · Medellín</span>
+    <p class="tagline">Uñas semipermanentes y diseños a mano. Agenda tu cita o mira mis últimos trabajos.</p>
 
     <nav class="socials" aria-label="Redes sociales">
       <a href="https://instagram.com/sarasucerquianails" target="_blank" rel="noopener" aria-label="Instagram de Sara">
@@ -152,45 +201,49 @@
       </a>
     </nav>
 
+    <a href="https://wa.me/573006306367?text=Hola%20Sara%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="link-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+      Agenda tu cita por WhatsApp
+    </a>
+
+    <h2 class="section-title">Mis trabajos</h2>
+    <div class="videos" aria-label="Videos de trabajos de Sara">
+      <figure class="clip">
+        <video src="videos/rojas.mp4" poster="videos/rojas.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de uñas rojas"></video>
+        <figcaption>Rojo clásico</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/flores.mp4" poster="videos/flores.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de uñas con flores pintadas a mano"></video>
+        <figcaption>Flores a mano</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/francesa.mp4" poster="videos/francesa.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de francesa con borde dorado"></video>
+        <figcaption>Francesa dorada</figcaption>
+      </figure>
+    </div>
+
     <div class="links">
-      <a href="https://wa.me/573006306367?text=Hola%20Sara%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="link-cta">Agenda tu cita por WhatsApp</a>
+      <a href="https://tiktok.com/@sarasucerquianails" target="_blank" rel="noopener" class="link-card">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg></span>
+        <span>Ver más videos en TikTok</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
       <a href="https://instagram.com/sarasucerquianails" target="_blank" rel="noopener" class="link-card">
         <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></span>
         <span>Sígueme en Instagram</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
     </div>
 
-    <div class="divider"></div>
-
-    <h2 class="videos-title">Mis videos</h2>
-    <p class="videos-note">Toca un video para verlo aquí.</p>
-    <div class="videos">
-      <a class="video-facade" href="https://www.tiktok.com/@sarasucerquianails/video/7509591002353651000" data-video-id="7509591002353651000" target="_blank" rel="noopener" aria-label="Ver video 1 de TikTok">
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg></span>
-        <span>Video 1</span>
-      </a>
-      <a class="video-facade" href="https://www.tiktok.com/@sarasucerquianails/video/7606434662868651272" data-video-id="7606434662868651272" target="_blank" rel="noopener" aria-label="Ver video 2 de TikTok">
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg></span>
-        <span>Video 2</span>
-      </a>
-    </div>
-
-    <footer>Hecho a mano. Los videos de TikTok solo se cargan si los tocas.</footer>
+    <footer>Hecho a mano en Medellín.</footer>
   </main>
 
 <script>
-  // Carga el reproductor de TikTok solo cuando la persona toca el video.
-  // Sin JavaScript, el enlace abre el video directamente en TikTok.
-  document.querySelectorAll(".video-facade").forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.tiktok.com/embed/v2/" + link.dataset.videoId + "?lang=es";
-      iframe.title = link.getAttribute("aria-label");
-      iframe.allow = "encrypted-media; fullscreen; picture-in-picture";
-      iframe.allowFullscreen = true;
-      link.replaceWith(iframe);
-      iframe.focus();
+  // Algunos celulares (por ejemplo, iPhone en modo ahorro de batería) bloquean la
+  // reproducción automática. En ese caso, el video arranca al tocarlo.
+  document.querySelectorAll(".clip video").forEach(function (video) {
+    video.addEventListener("click", function () {
+      if (video.paused) video.play(); else video.pause();
     });
   });
 </script>
