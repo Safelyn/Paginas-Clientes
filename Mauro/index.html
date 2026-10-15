@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mauro Cortez Tattoo</title>
+<meta name="description" content="Línea fina, realismo, retratos y sombras en Provenza, El Poblado (Medellín). Cotiza tu tatuaje con Mauro Cortez por WhatsApp.">
+<meta name="theme-color" content="#100E0C">
+<meta name="color-scheme" content="dark">
+
+<!-- Vista previa al compartir (WhatsApp, Instagram, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Mauro Cortez Tattoo">
+<meta property="og:description" content="Línea fina, realismo y retratos en Provenza, El Poblado. Cotiza tu tatuaje por WhatsApp.">
+<meta property="og:url" content="https://safelyn.github.io/Paginas-Clientes/Mauro/">
+<meta property="og:image" content="https://safelyn.github.io/Paginas-Clientes/Mauro/compartir.jpg">
+<meta property="og:image:alt" content="Foto de Mauro Cortez tatuando">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/jpeg" href="icono.jpg">
+<link rel="apple-touch-icon" href="icono.jpg">
+<link rel="preload" as="image" href="portada.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #100E0C;
+    --surface: #1A1715;
+    --surface-2: #24201C;
+    --ink: #F2ECE3;
+    --muted: #A99F93;
+    --accent: #CDA77F;
+    --accent-deep: #8E6A47;
+    --accent-soft: rgba(205, 167, 127, 0.13);
+    --star: #E9C46A;
+    --line: rgba(242, 236, 227, 0.12);
+    --hairline: rgba(205, 167, 127, 0.45);
+    --shadow: 0 16px 34px -18px rgba(205, 167, 127, 0.5);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --script: "Pinyon Script", "Snell Roundhand", cursive;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  /* Fondo difuminado con la misma foto (se nota sobre todo en pantallas anchas) */
+  .ambient {
+    position: absolute; inset: 0 0 auto 0; height: 1100px; z-index: 0; pointer-events: none;
+    background: url("portada.jpg") center top / cover no-repeat;
+    filter: blur(48px) sepia(0.5) brightness(0.55);
+    opacity: 0.5;
+    transform: scale(1.15);
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+            mask-image: linear-gradient(to bottom, #000 40%, transparent);
+  }
+
+  .page { position: relative; z-index: 1; width: 100%; max-width: 480px; margin: 0 auto; }
+
+  /* Foto principal grande que se funde con el contenido */
+  .hero { margin: 0; }
+  .hero img {
+    display: block; width: 100%; height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+
+  .content {
+    position: relative; margin-top: -170px;
+    padding: 0 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Nombre: serif clásico + "Tattoo" en caligrafía, como sus trabajos de lettering */
+  .name {
+    margin: 0 0 14px; text-align: center; line-height: 1;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+  }
+  .name .main {
+    display: block;
+    font-family: var(--serif); font-weight: 600; text-transform: uppercase;
+    font-size: clamp(38px, 11vw, 52px); letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .name .script {
+    display: block; margin-top: -4px;
+    font-family: var(--script); font-weight: 400;
+    font-size: clamp(44px, 13vw, 60px);
+    color: var(--accent);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9), 0 0 30px rgba(205, 167, 127, 0.35);
+  }
+  .badge {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 0 auto 14px; width: fit-content;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .badge::before, .badge::after { content: ""; width: 28px; height: 1px; background: var(--hairline); }
+  .tagline {
+    text-align: center; font-size: 15px; line-height: 1.55; color: var(--ink);
+    margin: 0 auto 22px; max-width: 32ch;
+    text-shadow: 0 0 12px var(--bg), 0 0 4px var(--bg);
+  }
+  .tagline strong { color: var(--accent); font-weight: 600; }
+
+  .socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
+  .socials a {
+    width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--surface); display: flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .socials a svg { width: 20px; height: 20px; }
+  .socials a:hover, .socials a:focus-visible {
+    border-color: var(--accent); background: var(--accent-soft); color: var(--accent); transform: translateY(-2px);
+  }
+
+  /* Botón principal */
+  .link-cta {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 17px 14px; margin-bottom: 34px; border-radius: 18px;
+    text-decoration: none; text-align: center;
+    font-size: clamp(16px, 4.6vw, 19px); font-weight: 800;
+    background: linear-gradient(135deg, #E2C29D, #A97E56);
+    color: #1B130C; box-shadow: var(--shadow);
+    animation: pulse 2.6s ease-in-out infinite;
+    transition: transform 0.15s ease;
+  }
+  .link-cta svg { width: 22px; height: 22px; flex: none; }
+  .link-cta::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shine 3.5s ease-in-out infinite;
+  }
+  .link-cta:hover, .link-cta:focus-visible { transform: translateY(-1px); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(205, 167, 127, 0.4); }
+    50% { box-shadow: var(--shadow), 0 0 0 9px rgba(205, 167, 127, 0); }
+  }
+  @keyframes shine {
+    0%, 60% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Títulos con una línea fina, como un trazo de aguja */
+  .section-title {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--serif); font-weight: 600; font-style: italic;
+    font-size: 30px; line-height: 1.1; margin: 0 0 14px; color: var(--ink);
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--hairline), transparent); }
+
+  /* Videos */
+  .videos {
+    display: flex; gap: 12px; overflow-x: auto;
+    margin: 0 -20px 34px; padding: 0 20px 10px;
+    scroll-snap-type: x mandatory; scroll-padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .videos::-webkit-scrollbar { display: none; }
+  .clip {
+    position: relative; flex: none; width: min(62vw, 230px); aspect-ratio: 9 / 16;
+    margin: 0; border-radius: 20px; overflow: hidden; scroll-snap-align: start;
+    background: var(--surface-2); border: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  .clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .clip figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+    color: #fff; font-size: 14px; font-weight: 700; pointer-events: none;
+  }
+
+  /* Reseñas */
+  .rating {
+    display: flex; align-items: center; gap: 8px; margin: -4px 0 14px;
+    font-size: 14px; color: var(--muted);
+  }
+  .rating b { font-size: 18px; color: var(--ink); }
+  .stars { color: var(--star); letter-spacing: 1px; }
+  .reviews { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .review {
+    position: relative; margin: 0; padding: 16px 18px; border-radius: 18px;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .review::before {
+    content: "“"; position: absolute; top: 2px; right: 16px;
+    font-family: var(--serif); font-size: 64px; line-height: 1; color: var(--accent); opacity: 0.35;
+  }
+  .review .stars { font-size: 15px; }
+  .review blockquote { margin: 8px 0 10px; font-size: 15px; line-height: 1.5; }
+  .review figcaption { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .review-actions { display: flex; gap: 10px; margin-bottom: 34px; }
+  .btn-soft {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 10px; border-radius: 14px; text-decoration: none; text-align: center;
+    font-size: 14px; font-weight: 700; line-height: 1.3;
+    color: var(--accent); background: var(--accent-soft); border: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .btn-soft:hover, .btn-soft:focus-visible { border-color: var(--accent); }
+
+  /* Enlaces secundarios */
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-card {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 16px 18px;
+    border-radius: 16px; text-decoration: none; font-size: 15px; font-weight: 600;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .link-card .icon { flex: none; width: 22px; height: 22px; color: var(--accent); }
+  .link-card small { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .link-card .arrow { margin-left: auto; color: var(--muted); }
+  .link-card:hover, .link-card:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
+
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  footer {
+    text-align: center; margin-top: 36px; font-size: 12px; line-height: 1.6; color: var(--muted);
+  }
+  footer .script { display: block; font-family: var(--script); font-size: 26px; color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <div class="page">
+    <figure class="hero">
+      <img src="portada.jpg" width="738" height="1090" alt="Mauro Cortez, con gafas y guantes negros, concentrado mientras tatúa un brazo.">
+    </figure>
+
+    <main class="content">
+      <h1 class="name"><span class="main">Mauro Cortez</span><span class="script">Tattoo</span></h1>
+      <p class="badge">Línea fina · Realismo</p>
+      <p class="tagline">Retratos, sombras y realismo en Provenza, El Poblado, con <strong>diseños hechos a tu medida</strong>.</p>
+
+      <nav class="socials" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/maurocorteztattoo/" target="_blank" rel="noopener" aria-label="Instagram de Mauro Cortez Tattoo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@maurocorteztattooo" target="_blank" rel="noopener" aria-label="TikTok de Mauro Cortez Tattoo">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg>
+        </a>
+        <a href="https://wa.me/573233320033?text=Hola%20Mauro%2C%20quiero%20cotizar%20un%20tatuaje" target="_blank" rel="noopener" aria-label="Escribir a Mauro por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+        </a>
+        <a href="https://maps.app.goo.gl/meEGXnTwGwdHF5Y48" target="_blank" rel="noopener" aria-label="Reseñas y ubicación de Mauro Cortez Tattoo en Google">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3zM12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22zM6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14zM12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.4 3-4.1 5.6-4.1z"/></svg>
+        </a>
+      </nav>
+
+      <a href="https://wa.me/573233320033?text=Hola%20Mauro%2C%20quiero%20cotizar%20un%20tatuaje" target="_blank" rel="noopener" class="link-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+        Cotiza tu tatuaje
+      </a>
+
+      <h2 class="section-title">Mis trabajos</h2>
+      <div class="videos" aria-label="Videos de tatuajes hechos por Mauro Cortez">
+        <figure class="clip">
+          <video src="videos/medusa.mp4" poster="videos/medusa.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de un tatuaje realista de medusa con serpientes en el antebrazo"></video>
+          <figcaption>Medusa realista</figcaption>
+        </figure>
+        <figure class="clip">
+          <video src="videos/anime-flores.mp4" poster="videos/anime-flores.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de un tatuaje de personaje anime con flores de cerezo y una mariposa"></video>
+          <figcaption>Anime y flores de cerezo</figcaption>
+        </figure>
+        <figure class="clip">
+          <video src="videos/en-sesion.mp4" poster="videos/en-sesion.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de Mauro tatuando a un cliente durante una sesión"></video>
+          <figcaption>En sesión</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="section-title">Lo que dicen de mí</h2>
+      <p class="rating"><b>5,0</b> <span class="stars" aria-hidden="true">★★★★★</span> <span>15 reseñas en Google</span></p>
+      <div class="reviews">
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+          <blockquote>Me fui a tatuar con mis amigos y desde que llegamos 10/10, me sentí muy cómoda, el lugar es limpio y organizado. Mauro fue muy profesional y logró exactamente el diseño que queríamos, durante el proceso me explicó todo y fue súper súper amable. 💕</blockquote>
+          <figcaption>Sofía D. · Reseña de Google</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+          <blockquote>Mauro ha sido mi tatuador desde hace muchos años. Ir a tatuarte con Mauro es una experiencia divertida, profesional y honesta. Y seguro que saldrás enamorado de tu tatuaje 💗</blockquote>
+          <figcaption>Laura L. · Reseña de Google</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+          <blockquote>Una experiencia preciosa. Desde el primer momento se creó un espacio de confianza. Me encantó su forma de pensar y de entender el arte. Y, sobre todo, el tatuaje ha quedado súper chulo.</blockquote>
+          <figcaption>Marta R. · Reseña de Google</figcaption>
+        </figure>
+      </div>
+      <div class="review-actions">
+        <a class="btn-soft" href="https://maps.app.goo.gl/meEGXnTwGwdHF5Y48" target="_blank" rel="noopener">Ver todas las reseñas</a>
+        <a class="btn-soft" href="https://search.google.com/local/writereview?placeid=ChIJLQyTh9opRI4R5M2D8V8dPc0" target="_blank" rel="noopener">Déjame tu reseña ★</a>
+      </div>
+
+      <div class="links">
+        <a href="https://maps.app.goo.gl/meEGXnTwGwdHF5Y48" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <span>Cómo llegar<small>Cra. 37 #8-31, Provenza · El Poblado</small></span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.instagram.com/maurocorteztattoo/" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></span>
+          <span>Sígueme en Instagram<small>@maurocorteztattoo</small></span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.tiktok.com/@maurocorteztattooo" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg></span>
+          <span>Mira más videos en TikTok<small>@maurocorteztattooo</small></span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <footer><span class="script">Mauro Cortez Tattoo</span>Provenza, El Poblado · Medellín 🤍</footer>
+    </main>
+  </div>
+
+<script>
+  // Algunos celulares (por ejemplo, iPhone en modo ahorro de batería) bloquean la
+  // reproducción automática. En ese caso, el video arranca al tocarlo.
+  document.querySelectorAll(".clip video").forEach(function (video) {
+    video.addEventListener("click", function () {
+      if (video.paused) video.play(); else video.pause();
+    });
+  });
+</script>
+
+</body>
+</html>
