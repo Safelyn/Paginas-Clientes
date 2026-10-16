@@ -3,50 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Identi NFC</title>
+<title>Identi · Conexión NFC</title>
 <meta name="description" content="Llaveros y placas NFC con tu propia página. Hechos a mano en Medellín.">
-<meta property="og:title" content="Identi NFC">
+<meta property="og:title" content="Identi · Conexión NFC">
 <meta property="og:description" content="Llaveros y placas NFC con tu propia página. Hechos a mano en Medellín.">
+<meta property="og:image" content="https://identinfc.com/inicio/foto1.jpg">
+<link rel="icon" href="inicio/logo.png">
 <style>
-  :root{--brand:#14513d;--brand-2:#1d7a5a;--ink:#15211c;--muted:#5d6b65;--bg:#f4f6f5;--line:#dbe3df}
+  :root{--bg:#fbf9f4;--ink:#111;--muted:#5f5b53;--line:#e6e1d6;--card:#fff}
   *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);
-    font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-  header{background:var(--brand);color:#fff;padding:56px 16px 64px;text-align:center}
-  .logo{font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:14px;opacity:.85}
-  h1{margin:10px auto 8px;font-size:32px;line-height:1.15;max-width:560px}
-  header p{margin:0 auto;max-width:480px;opacity:.92}
-  main{flex:1;max-width:640px;width:100%;margin:-32px auto 40px;padding:0 16px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
-  .card h2{margin:0 0 6px;font-size:18px;color:var(--brand)}
-  .card p{margin:0;color:var(--muted)}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media (max-width:480px){.grid{grid-template-columns:1fr} h1{font-size:26px}}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  img{display:block;max-width:100%}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  header{text-align:center;padding:40px 0 24px}
+  header .logo{width:220px;margin:0 auto}
+  header h1{font-size:30px;line-height:1.15;margin:24px auto 10px;max-width:560px;letter-spacing:-.01em}
+  header p{color:var(--muted);margin:0 auto;max-width:480px}
+  .hero{margin:28px auto 0;max-width:420px;border-radius:20px;overflow:hidden;aspect-ratio:4/5}
+  .hero img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+  section{padding:40px 0}
+  h2{font-size:22px;margin:0 0 18px;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .step b{display:block;margin-bottom:4px}
+  .step b::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;
+    width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;margin-right:8px}
+  .step p{margin:0;color:var(--muted);font-size:15px}
+  .uses{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .use{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .use img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .use div{padding:16px 18px 18px}
+  .use h3{margin:0 0 4px;font-size:18px}
+  .use p{margin:0;color:var(--muted);font-size:15px}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px}
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center}
+  .perk{padding:6px 8px}
+  .perk b{display:block;font-size:17px;margin-bottom:2px}
+  .perk span{color:var(--muted);font-size:15px}
+  .dark{background:var(--ink);color:#fff;border-radius:24px;padding:36px 20px;text-align:center;margin:8px 0 40px}
+  .dark p{color:#cfcac0;margin:6px auto 0;max-width:460px}
   footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 32px}
+  @media (max-width:640px){
+    header h1{font-size:25px}
+    .steps,.perks{grid-template-columns:1fr}
+    .uses{grid-template-columns:1fr}
+    .gallery{grid-template-columns:1fr 1fr}
+    .gallery img:nth-child(3){display:none}
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">Identi NFC</div>
-  <h1>Acerca tu llavero al celular y comparte todo lo tuyo</h1>
-  <p>Llaveros y placas NFC con QR que abren una página hecha a tu medida. Hechos a mano en Medellín.</p>
-</header>
-<main>
-  <div class="grid">
-    <section class="card">
-      <h2>Para tu trabajo</h2>
-      <p>Tus redes, fotos de tu trabajo, video y WhatsApp en una sola página. Ideal para tatuadores, barberos, fotógrafos y negocios.</p>
-    </section>
-    <section class="card">
-      <h2>Para tu mascota</h2>
-      <p>Una placa con su foto y tu contacto, para que quien la encuentre te escriba en segundos.</p>
-    </section>
-  </div>
-  <section class="card">
-    <h2>Cambios incluidos</h2>
-    <p>Si cambias de Instagram o quieres nuevas fotos, actualizamos tu página y tu llavero sigue funcionando igual.</p>
+<div class="wrap">
+  <header>
+    <img class="logo" src="inicio/logo.png" alt="Identi · Conexión NFC" width="500" height="378">
+    <h1>Acerca tu llavero al celular y comparte todo lo tuyo</h1>
+    <p>Llaveros y placas NFC con QR que abren una página hecha a tu medida. Hechos a mano en Medellín.</p>
+    <div class="hero"><img src="inicio/foto1.jpg" alt="Llavero y placa Identi con diseño de perro"></div>
+  </header>
+
+  <section>
+    <h2>Así funciona</h2>
+    <div class="steps">
+      <div class="step"><b>Acércalo</b><p>Pon el llavero cerca del celular o escanea el QR.</p></div>
+      <div class="step"><b>Se abre tu página</b><p>Redes, fotos, video y WhatsApp en un solo lugar.</p></div>
+      <div class="step"><b>Te contactan</b><p>Sin apps, sin escribir nada. En segundos.</p></div>
+    </div>
   </section>
-</main>
+
+  <section>
+    <h2>Para tu trabajo y para tu mascota</h2>
+    <div class="uses">
+      <div class="use">
+        <img src="inicio/foto2.jpg" alt="Llavero Identi con logo personalizado" loading="lazy">
+        <div><h3>Trabajo y negocios</h3><p>Ideal para tatuadores, barberos, fotógrafos y locales. Con tu logo y tu portafolio.</p></div>
+      </div>
+      <div class="use">
+        <img src="inicio/foto3.jpg" alt="Placa y llavero Identi con código QR" loading="lazy">
+        <div><h3>Mascotas</h3><p>Una placa con su foto y tu contacto, para que quien la encuentre te escriba en segundos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hechos a mano, entregados en persona</h2>
+    <div class="gallery">
+      <img src="inicio/foto4.jpg" alt="Entrega de un llavero Identi en su caja" loading="lazy">
+      <img src="inicio/foto5.jpg" alt="Caja de Identi con sticker" loading="lazy">
+      <img src="inicio/foto2.jpg" alt="Llavero Identi personalizado" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <div class="perks">
+      <div class="perk"><b>Página a tu medida</b><span>No una plantilla de app</span></div>
+      <div class="perk"><b>Cambios incluidos</b><span>Tu llavero sigue igual</span></div>
+      <div class="perk"><b>Medellín</b><span>Entrega en persona</span></div>
+    </div>
+  </section>
+
+  <div class="dark">
+    <h2 style="margin:0">Identi · Conexión NFC</h2>
+    <p>Una sola cosa en tus llaves para que te encuentren, te sigan y te escriban.</p>
+  </div>
+</div>
 <footer>Identi NFC · Medellín</footer>
 </body>
 </html>
