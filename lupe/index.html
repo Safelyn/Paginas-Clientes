@@ -116,6 +116,30 @@
     display: grid; place-items: center; background: var(--accent); color: var(--accent-ink);
     font-family: var(--round); font-weight: 700; font-size: 15px;
   }
+  .sms { grid-column: 1 / -1; background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+
+  /* Mensaje de respaldo */
+  .mensaje { margin-top: 22px; padding: 18px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
+  .mensaje h2 { margin: 0 0 4px; font-family: var(--round); font-weight: 600; font-size: 20px; }
+  .mensaje > p { margin: 0 0 14px; font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .mensaje label { display: block; font-size: 14px; font-weight: 600; margin: 12px 0 6px; }
+  .mensaje input[type=text], .mensaje input[type=tel], .mensaje textarea {
+    width: 100%; padding: 13px 14px; border-radius: 14px; border: 1.5px solid var(--line);
+    font: 16px/1.4 var(--sans); color: var(--ink); background: #FCFAF8;
+  }
+  .mensaje textarea { min-height: 96px; resize: vertical; }
+  .mensaje input:focus, .mensaje textarea:focus { outline: none; border-color: var(--accent); }
+  .mensaje .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--ink); }
+  .mensaje .check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
+  .mensaje button {
+    width: 100%; min-height: 54px; margin-top: 14px; border: 0; border-radius: 16px; cursor: pointer;
+    background: var(--ink); color: #fff; font: 700 16px var(--sans);
+  }
+  .mensaje button:disabled { opacity: 0.7; cursor: progress; }
+  .mensaje .estado { margin: 10px 0 0; font-size: 14px; text-align: center; }
+  .mensaje .estado.error { color: #B3261E; }
+  .oculto { display: none !important; }
+  .gracias { text-align: center; padding: 8px 0; font-size: 16px; line-height: 1.5; }
 
   footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--muted); line-height: 1.6; }
   footer a { color: var(--muted); }
@@ -153,6 +177,10 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
             WhatsApp
           </a>
+          <a class="sms" href="sms:+573193462618?&body=Hola%20Diego%2C%20encontr%C3%A9%20a%20Lupe.%20Escr%C3%ADbeme%20o%20ll%C3%A1mame%20a%20este%20n%C3%BAmero.">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+            Mandar SMS (sin internet)
+          </a>
         </div>
       </section>
 
@@ -161,8 +189,26 @@
         <ol>
           <li>Mantenme en un lugar seguro, lejos de la calle. Si puedes, déjame en un espacio cerrado: los gatos nos escondemos cuando nos asustamos.</li>
           <li>Toca el botón verde para enviarle tu ubicación a mi familia.</li>
-          <li>Si no contestan, llama al número de arriba. ¡Gracias por ayudarme! 💛</li>
+          <li>Si no contestan, llama, manda un SMS o déjales un mensaje aquí abajo. ¡Gracias por ayudarme! 💛</li>
         </ol>
+      </section>
+
+      <section class="mensaje" aria-labelledby="titulo-mensaje">
+        <h2 id="titulo-mensaje">¿No te contestan? Déjale un mensaje</h2>
+        <p>Le llega por correo a Identi NFC y nosotros avisamos de inmediato a la familia de Lupe.</p>
+        <form id="form-mensaje" novalidate>
+          <label for="m-tel">Tu WhatsApp o teléfono</label>
+          <input type="tel" id="m-tel" name="Teléfono de quien encontró" autocomplete="tel" inputmode="tel" placeholder="Ej: 300 123 4567" required>
+          <label for="m-nombre">Tu nombre (opcional)</label>
+          <input type="text" id="m-nombre" name="Nombre de quien encontró" autocomplete="name">
+          <label for="m-texto">Mensaje</label>
+          <textarea id="m-texto" name="Mensaje" placeholder="Ej: La encontré en el parque de Laureles, la tengo en mi casa."></textarea>
+          <label class="check"><input type="checkbox" id="m-ubic" checked> Incluir mi ubicación actual</label>
+          <input type="text" name="_honey" class="oculto" tabindex="-1" autocomplete="off">
+          <button type="submit" id="m-boton">Enviar mensaje</button>
+          <p class="estado" id="m-estado" role="status"></p>
+        </form>
+        <p class="gracias oculto" id="m-gracias">¡Gracias! 💛 Ya recibimos tu mensaje y le avisamos a la familia de Lupe. Te van a contactar al número que dejaste.</p>
       </section>
 
       <footer>
@@ -213,6 +259,54 @@
         sinUbicacion,
         { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
       );
+    });
+  })();
+
+  // Mensaje de respaldo: llega por correo a Identi vía FormSubmit (sin servidor propio)
+  (function () {
+    var ENDPOINT = "https://formsubmit.co/ajax/db2e78e41a8ec279aa2f6589040f2abd";
+    var f = document.getElementById("form-mensaje");
+    var boton = document.getElementById("m-boton");
+    var estado = document.getElementById("m-estado");
+
+    function ubicacion() {
+      return new Promise(function (ok) {
+        if (!document.getElementById("m-ubic").checked || !navigator.geolocation) return ok(null);
+        navigator.geolocation.getCurrentPosition(function (p) { ok(p.coords); }, function () { ok(null); },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+      });
+    }
+
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      estado.className = "estado"; estado.textContent = "";
+      var tel = document.getElementById("m-tel").value.trim();
+      if (tel.replace(/[^0-9]/g, "").length < 7) {
+        estado.className = "estado error"; estado.textContent = "Déjanos un teléfono para que la familia te pueda contactar.";
+        return;
+      }
+      boton.disabled = true; boton.textContent = "Enviando…";
+      ubicacion().then(function (c) {
+        var data = {};
+        new FormData(f).forEach(function (v, k) { if (v) data[k] = v; });
+        data["Mascota"] = "Lupe";
+        data["Dueño"] = "Diego Ortega · 319 346 2618";
+        data["Ubicación"] = c ? "https://maps.google.com/?q=" + c.latitude.toFixed(6) + "," + c.longitude.toFixed(6) : "No compartida";
+        data._subject = "🐾 Encontraron a Lupe (placa Identi)";
+        data._template = "table";
+        data._captcha = "false";
+        return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
+            if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || r.status);
+          }); });
+      }).then(function () {
+        f.classList.add("oculto");
+        document.getElementById("m-gracias").classList.remove("oculto");
+      }).catch(function () {
+        estado.className = "estado error";
+        estado.textContent = "No se pudo enviar. Revisa tu conexión, o usa el botón de SMS de arriba.";
+        boton.disabled = false; boton.textContent = "Enviar mensaje";
+      });
     });
   })();
 </script>
