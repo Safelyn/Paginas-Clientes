@@ -165,19 +165,19 @@
       <p class="hint" id="aviso">Se abre WhatsApp con tu ubicación lista para enviar. Tu celular te va a pedir permiso.</p>
 
       <section class="contacto" aria-label="Contacto de la familia">
-        <p class="label">Llama o escribe a mi familia</p>
-        
+        <p class="label">Mi familia</p>
+        <p class="duenio">Valentina Ortega</p>
         <a class="telefono" href="tel:+573054461608">305 446 1608</a>
         <div class="acciones">
           <a class="llamar" href="tel:+573054461608">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
             Llamar
           </a>
-          <a class="escribir" href="https://wa.me/573054461608?text=Hola%2C%20encontr%C3%A9%20a%20uno%20de%20tus%20gatos%20(Firulo%20o%20Pelusa)%20%F0%9F%90%BE" target="_blank" rel="noopener">
+          <a class="escribir" href="https://wa.me/573054461608?text=Hola%20Valentina%2C%20encontr%C3%A9%20a%20uno%20de%20tus%20gatos%20(Firulo%20o%20Pelusa)%20%F0%9F%90%BE" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
             WhatsApp
           </a>
-          <a class="sms" href="sms:+573054461608?&body=Hola%2C%20encontr%C3%A9%20a%20uno%20de%20tus%20gatos%20(Firulo%20o%20Pelusa).%20Escr%C3%ADbeme%20o%20ll%C3%A1mame%20a%20este%20n%C3%BAmero.">
+          <a class="sms" href="sms:+573054461608?&body=Hola%20Valentina%2C%20encontr%C3%A9%20a%20uno%20de%20tus%20gatos%20(Firulo%20o%20Pelusa).%20Escr%C3%ADbeme%20o%20ll%C3%A1mame%20a%20este%20n%C3%BAmero.">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
             Mandar SMS (sin internet)
           </a>
@@ -290,7 +290,7 @@
         var data = {};
         new FormData(f).forEach(function (v, k) { if (v) data[k] = v; });
         data["Mascota"] = "Firulo y Pelusa";
-        data["Dueño"] = "Propietario · 305 446 1608";
+        data["Dueño"] = "Valentina Ortega · 305 446 1608";
         data["Ubicación"] = c ? "https://maps.google.com/?q=" + c.latitude.toFixed(6) + "," + c.longitude.toFixed(6) : "No compartida";
         data._subject = "🐾 Encontraron a Firulo y Pelusa (placa Identi)";
         data._template = "table";
