@@ -302,12 +302,13 @@
     try {
       const r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) });
       const j = await r.json().catch(() => ({}));
-      if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "Error");
+      if (/activ/i.test(j.message || "")) throw new Error("Esta encuesta todavía no está activada. Inténtalo de nuevo en un rato.");
+      if (!r.ok || j.success === "false" || j.success === false) throw new Error("No se pudo enviar (" + (j.message || r.status) + "). Inténtalo de nuevo.");
       f.classList.add("hidden");
       document.getElementById("thanks").classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
-      msg.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.";
+      msg.textContent = err instanceof TypeError ? "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo." : err.message;
       btn.disabled = false; btn.textContent = "Enviar respuestas";
     }
   });
