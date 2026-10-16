@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encuesta Identi NFC</title>
+<meta name="description" content="Encuesta de 2 minutos de Identi NFC. Tu opinión nos ayuda a mejorar.">
+<meta property="og:title" content="Encuesta Identi NFC">
+<meta property="og:description" content="Son 2 minutos. ¡Gracias por ayudarnos a mejorar!">
+<style>
+  :root{
+    --bg:#f4f6f5; --card:#ffffff; --ink:#15211c; --muted:#5d6b65;
+    --brand:#14513d; --brand-2:#1d7a5a; --line:#dbe3df; --soft:#e7f1ec; --err:#b3261e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  header{background:var(--brand);color:#fff;padding:36px 16px 56px;text-align:center}
+  header .logo{font-weight:800;letter-spacing:.06em;font-size:14px;opacity:.85;text-transform:uppercase}
+  header h1{margin:8px 0 6px;font-size:28px;line-height:1.2}
+  header p{margin:0 auto;max-width:520px;opacity:.92}
+  main{max-width:640px;margin:-36px auto 40px;padding:0 16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+  .card h2{margin:0 0 4px;font-size:18px;color:var(--brand)}
+  .card .hint{margin:0 0 12px;color:var(--muted);font-size:14px}
+  .q{margin:18px 0 0}
+  .q:first-of-type{margin-top:8px}
+  .q > label, .q > .label{display:block;font-weight:600;margin-bottom:8px}
+  .num{display:inline-block;min-width:24px;color:var(--brand-2)}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opts label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;cursor:pointer;background:#fff;font-size:15px;user-select:none}
+  .opts input{accent-color:var(--brand)}
+  .opts label:has(input:checked){background:var(--soft);border-color:var(--brand-2)}
+  .scale{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+  .scale label{justify-content:center;padding:10px 0;border-radius:10px}
+  .scale input{position:absolute;opacity:0;pointer-events:none}
+  .scale-legend{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:4px}
+  input[type=text],input[type=tel],input[type=number],textarea{width:100%;border:1px solid var(--line);
+    border-radius:10px;padding:10px 12px;font:inherit;background:#fff;color:var(--ink)}
+  textarea{min-height:76px;resize:vertical}
+  input:focus,textarea:focus{outline:2px solid var(--brand-2);outline-offset:1px}
+  .sub{margin-top:10px}
+  .hidden{display:none}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
+  .consent input{margin-top:4px;accent-color:var(--brand)}
+  button{width:100%;border:0;border-radius:12px;background:var(--brand);color:#fff;font:inherit;
+    font-weight:700;font-size:17px;padding:14px;cursor:pointer}
+  button:hover{background:var(--brand-2)}
+  button[disabled]{opacity:.6;cursor:wait}
+  .msg{margin-top:12px;color:var(--err);font-size:14px}
+  .thanks{text-align:center;padding:40px 20px}
+  .thanks h2{font-size:24px}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 32px}
+  @media (max-width:420px){ .scale{grid-template-columns:repeat(5,1fr)} header h1{font-size:24px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Identi NFC</div>
+  <h1>¿Nos ayudas con 2 minutos?</h1>
+  <p>Estamos mejorando nuestros llaveros y placas, y tu opinión nos sirve muchísimo. ¡Gracias!</p>
+</header>
+
+<main>
+<form id="f" novalidate>
+  <!-- Para todos -->
+  <section class="card">
+    <h2>Para todos</h2>
+    <div class="q">
+      <div class="label"><span class="num">1.</span>¿Ya nos compraste algo?</div>
+      <div class="opts">
+        <label><input type="radio" name="1. Ya compró" value="Sí" required> Sí</label>
+        <label><input type="radio" name="1. Ya compró" value="No"> No</label>
+      </div>
+      <div class="sub hidden" id="q1b">
+        <div class="label">¿Qué compraste?</div>
+        <div class="opts">
+          <label><input type="checkbox" name="1b. Qué compró" value="Llavero básico"> Llavero básico</label>
+          <label><input type="checkbox" name="1b. Qué compró" value="Llavero con página"> Llavero con página</label>
+          <label><input type="checkbox" name="1b. Qué compró" value="Placa para mascota"> Placa para mascota</label>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <div class="label"><span class="num">2.</span>¿Cómo nos conociste?</div>
+      <div class="opts">
+        <label><input type="radio" name="2. Cómo nos conoció" value="Me lo mostró alguien"> Me lo mostró alguien</label>
+        <label><input type="radio" name="2. Cómo nos conoció" value="Instagram"> Instagram</label>
+        <label><input type="radio" name="2. Cómo nos conoció" value="WhatsApp"> WhatsApp</label>
+        <label><input type="radio" name="2. Cómo nos conoció" value="Otro"> Otro</label>
+      </div>
+    </div>
+    <div class="q">
+      <div class="label"><span class="num">3.</span>Del 1 al 10, ¿qué tanto le recomendarías Identi a un amigo?</div>
+      <div class="opts scale">
+        <label><input type="radio" name="3. Recomendación (1-10)" value="1">1</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="2">2</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="3">3</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="4">4</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="5">5</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="6">6</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="7">7</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="8">8</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="9">9</label>
+        <label><input type="radio" name="3. Recomendación (1-10)" value="10">10</label>
+      </div>
+      <div class="scale-legend"><span>Nada</span><span>Totalmente</span></div>
+    </div>
+    <div class="q">
+      <label for="q4"><span class="num">4.</span>¿Qué es lo que más te gusta o te gustaría de un llavero o placa que se acerca al celular?</label>
+      <textarea id="q4" name="4. Qué le gusta"></textarea>
+    </div>
+  </section>
+
+  <!-- Trabajo / negocio -->
+  <section class="card">
+    <h2>Trabajo o negocio</h2>
+    <div class="q">
+      <div class="label">¿Lo usas (o lo usarías) para tu trabajo o negocio?</div>
+      <div class="opts">
+        <label><input type="radio" name="Usa para trabajo" value="Sí"> Sí</label>
+        <label><input type="radio" name="Usa para trabajo" value="No"> No</label>
+      </div>
+    </div>
+    <div id="work" class="hidden">
+      <div class="q">
+        <label for="q5"><span class="num">5.</span>¿A qué te dedicas? ¿Trabajas solo o en un local o empresa? ¿Cuántas personas trabajan ahí?</label>
+        <textarea id="q5" name="5. A qué se dedica / equipo"></textarea>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">6.</span>¿Cómo te llegan la mayoría de tus clientes?</div>
+        <div class="opts">
+          <label><input type="checkbox" name="6. Cómo le llegan clientes" value="Instagram"> Instagram</label>
+          <label><input type="checkbox" name="6. Cómo le llegan clientes" value="WhatsApp"> WhatsApp</label>
+          <label><input type="checkbox" name="6. Cómo le llegan clientes" value="Recomendación"> Recomendación</label>
+          <label><input type="checkbox" name="6. Cómo le llegan clientes" value="Google"> Google</label>
+          <label><input type="checkbox" name="6. Cómo le llegan clientes" value="Otro"> Otro</label>
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">7.</span>Por un llavero con tu propia página (redes, fotos de tu trabajo, WhatsApp), ¿cuánto pagarías?</div>
+        <div class="opts">
+          <label><input type="radio" name="7. Pagaría por llavero con página" value="Menos de 30.000"> Menos de $30.000</label>
+          <label><input type="radio" name="7. Pagaría por llavero con página" value="30.000 a 50.000"> $30.000 a $50.000</label>
+          <label><input type="radio" name="7. Pagaría por llavero con página" value="50.000 a 80.000"> $50.000 a $80.000</label>
+          <label><input type="radio" name="7. Pagaría por llavero con página" value="Más de 80.000"> Más de $80.000</label>
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">8.</span>¿Comprarías uno para cada persona de tu equipo o local?</div>
+        <div class="opts">
+          <label><input type="radio" name="8. Compraría para el equipo" value="Sí"> Sí</label>
+          <label><input type="radio" name="8. Compraría para el equipo" value="Tal vez"> Tal vez</label>
+          <label><input type="radio" name="8. Compraría para el equipo" value="No"> No</label>
+          <label><input type="radio" name="8. Compraría para el equipo" value="Trabajo solo"> Trabajo solo</label>
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">9.</span>¿Pagarías una cuota pequeña al mes por cambios ilimitados en tu página y por saber cuántas personas escanean tu llavero?</div>
+        <div class="opts">
+          <label><input type="radio" name="9. Pagaría plan mensual" value="Sí"> Sí</label>
+          <label><input type="radio" name="9. Pagaría plan mensual" value="Tal vez"> Tal vez</label>
+          <label><input type="radio" name="9. Pagaría plan mensual" value="No"> No</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mascotas -->
+  <section class="card">
+    <h2>Mascotas</h2>
+    <div class="q">
+      <div class="label">¿Tienes mascota?</div>
+      <div class="opts">
+        <label><input type="radio" name="Tiene mascota" value="Sí"> Sí</label>
+        <label><input type="radio" name="Tiene mascota" value="No"> No</label>
+      </div>
+    </div>
+    <div id="pets" class="hidden">
+      <div class="q">
+        <div class="label"><span class="num">10.</span>¿Qué mascota tienes?</div>
+        <div class="opts">
+          <label><input type="checkbox" name="10. Tipo de mascota" value="Perro"> Perro</label>
+          <label><input type="checkbox" name="10. Tipo de mascota" value="Gato"> Gato</label>
+          <label><input type="checkbox" name="10. Tipo de mascota" value="Otra"> Otra</label>
+        </div>
+        <div class="sub">
+          <label for="q10b" class="label">¿Cuántas?</label>
+          <input id="q10b" type="number" min="1" max="50" inputmode="numeric" name="10b. Cuántas mascotas">
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">11.</span>¿Se te ha perdido alguna vez?</div>
+        <div class="opts">
+          <label><input type="radio" name="11. Se le ha perdido" value="Sí"> Sí</label>
+          <label><input type="radio" name="11. Se le ha perdido" value="No"> No</label>
+        </div>
+        <div class="sub">
+          <div class="label">¿Hoy tiene alguna placa o identificación?</div>
+          <div class="opts">
+            <label><input type="radio" name="11b. Tiene placa hoy" value="Sí"> Sí</label>
+            <label><input type="radio" name="11b. Tiene placa hoy" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">12.</span>¿Qué te gustaría que tuviera una placa?</div>
+        <div class="opts">
+          <label><input type="checkbox" name="12. Qué quiere en la placa" value="Foto de la mascota"> Foto de la mascota</label>
+          <label><input type="checkbox" name="12. Qué quiere en la placa" value="Mi teléfono"> Mi teléfono</label>
+          <label><input type="checkbox" name="12. Qué quiere en la placa" value="Datos médicos o vacunas"> Datos médicos o vacunas</label>
+          <label><input type="checkbox" name="12. Qué quiere en la placa" value="Aviso de dónde la encontraron"> Aviso de dónde la encontraron</label>
+          <label><input type="checkbox" name="12. Qué quiere en la placa" value="Otro"> Otro</label>
+        </div>
+      </div>
+      <div class="q">
+        <div class="label"><span class="num">13.</span>¿Cuánto pagarías por una placa así?</div>
+        <div class="opts">
+          <label><input type="radio" name="13. Pagaría por placa" value="Menos de 30.000"> Menos de $30.000</label>
+          <label><input type="radio" name="13. Pagaría por placa" value="30.000 a 50.000"> $30.000 a $50.000</label>
+          <label><input type="radio" name="13. Pagaría por placa" value="50.000 a 70.000"> $50.000 a $70.000</label>
+          <label><input type="radio" name="13. Pagaría por placa" value="Más de 70.000"> Más de $70.000</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cierre -->
+  <section class="card">
+    <h2>Para cerrar</h2>
+    <div class="q">
+      <label for="q14"><span class="num">14.</span>¿Qué otro producto te gustaría que hiciéramos?</label>
+      <textarea id="q14" name="14. Otro producto"></textarea>
+    </div>
+    <div class="q">
+      <label for="q15"><span class="num">15.</span>¿Conoces a alguien a quien le serviría un llavero o una placa Identi?</label>
+      <p class="hint">Si nos pasas su nombre y WhatsApp, te regalamos un cambio en tu página o un descuento en tu próxima compra. Pídele permiso antes de compartir su número.</p>
+      <textarea id="q15" name="15. Referidos" placeholder="Nombre y WhatsApp"></textarea>
+    </div>
+    <div class="q">
+      <label for="nombre">Tu nombre (opcional)</label>
+      <input id="nombre" type="text" name="Nombre" autocomplete="name">
+    </div>
+    <div class="q">
+      <label for="tel">Tu WhatsApp (opcional, para darte el regalo)</label>
+      <input id="tel" type="tel" name="WhatsApp" autocomplete="tel" inputmode="tel">
+    </div>
+    <div class="q">
+      <label class="consent"><input type="checkbox" id="consent" name="Autoriza tratamiento de datos" value="Sí">
+        <span>Autorizo a Identi NFC a usar mis respuestas y los datos que comparto solo para mejorar sus productos y contactarme, según la Ley 1581 de 2012. Puedo pedir que los borren cuando quiera.</span></label>
+    </div>
+    <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off">
+    <div class="q"><button type="submit" id="btn">Enviar respuestas</button></div>
+    <div class="msg" id="msg" role="alert"></div>
+  </section>
+</form>
+
+<section class="card thanks hidden" id="thanks">
+  <h2>¡Gracias! 🙌</h2>
+  <p>Recibimos tus respuestas. Si nos dejaste un referido, te escribimos por WhatsApp para tu regalo.</p>
+</section>
+</main>
+
+<footer>Identi NFC · Medellín</footer>
+
+<script>
+  // Las respuestas llegan por correo vía FormSubmit (sin servidor propio).
+  const ENDPOINT = "https://formsubmit.co/ajax/Safelyn119@gmail.com";
+  const f = document.getElementById("f");
+
+  function toggle(name, id){
+    f.querySelectorAll(`input[name="${name}"]`).forEach(r => r.addEventListener("change", () => {
+      document.getElementById(id).classList.toggle("hidden", f.querySelector(`input[name="${name}"]:checked`).value !== "Sí");
+    }));
+  }
+  toggle("1. Ya compró", "q1b");
+  toggle("Usa para trabajo", "work");
+  toggle("Tiene mascota", "pets");
+
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const msg = document.getElementById("msg"), btn = document.getElementById("btn");
+    msg.textContent = "";
+    if (!f.querySelector('input[name="1. Ya compró"]:checked')) { msg.textContent = "Responde la pregunta 1 para continuar."; return; }
+    const hasPersonal = ["q15","nombre","tel"].some(id => document.getElementById(id).value.trim());
+    if (hasPersonal && !document.getElementById("consent").checked) { msg.textContent = "Para guardar tus datos de contacto necesitamos tu autorización (casilla de arriba)."; return; }
+
+    const data = {};
+    for (const [k, v] of new FormData(f)) {
+      if (!v) continue;
+      // Saltar preguntas de bloques ocultos
+      const el = f.querySelector(`[name="${CSS.escape(k)}"]`);
+      if (el && el.closest(".hidden") && k !== "_honey") continue;
+      data[k] = data[k] ? data[k] + ", " + v : v;
+    }
+    data._subject = "Nueva respuesta encuesta Identi NFC";
+    data._template = "table";
+    data._captcha = "false";
+
+    btn.disabled = true; btn.textContent = "Enviando…";
+    try {
+      const r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "Error");
+      f.classList.add("hidden");
+      document.getElementById("thanks").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      msg.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.";
+      btn.disabled = false; btn.textContent = "Enviar respuestas";
+    }
+  });
+</script>
+</body>
+</html>
