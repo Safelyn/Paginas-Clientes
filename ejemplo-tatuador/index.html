@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- EDITAR: nombre del cliente (sale en la pestaña y al compartir el link) -->
+<title>Nombre del tatuador · Tatuajes</title>
+<meta name="description" content="Tatuajes en Medellín. Mira mis trabajos y agenda por WhatsApp.">
+<meta property="og:title" content="Nombre del tatuador · Tatuajes">
+<meta property="og:description" content="Mira mis trabajos y agenda por WhatsApp.">
+<meta property="og:image" content="fotos/perfil.jpg">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="fotos/perfil.jpg">
+<style>
+  :root{--bg:#f7f5f0;--ink:#111;--muted:#615d55;--line:#e3ded2;--card:#fff}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  img,video{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px 32px}
+  [hidden]{display:none!important}
+
+  /* Portada */
+  .hero{position:relative;background:var(--ink);height:190px;overflow:hidden}
+  .hero img{width:100%;height:100%;object-fit:cover;opacity:.85}
+  .head{text-align:center;margin-top:-64px;position:relative}
+  .avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;margin:0 auto;border:4px solid var(--bg);background:#ddd}
+  .logo{max-height:64px;max-width:200px;margin:14px auto 0;object-fit:contain}
+  h1{font-size:28px;line-height:1.15;margin:12px 0 4px;letter-spacing:-.01em}
+  .frase{color:var(--muted);margin:0 auto;max-width:400px}
+
+  /* Botones */
+  .btns{display:grid;gap:10px;margin:22px 0 6px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;
+    padding:14px 18px;border-radius:14px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+  .btn.main{background:var(--ink);color:#fff}
+  .btn svg{width:20px;height:20px;flex:none}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .row .btn:only-child{grid-column:1/-1}
+
+  /* Secciones */
+  section{margin-top:34px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px;color:var(--muted)}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:14px;overflow:hidden}
+  .gal button{all:unset;cursor:pointer;aspect-ratio:1/1;background:#ddd}
+  .gal img{width:100%;height:100%;object-fit:cover}
+  .vids{display:grid;gap:12px}
+  .vids video{width:100%;border-radius:14px;background:#000;aspect-ratio:3/4;object-fit:cover}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card p{margin:0}
+  .card .btn{margin-top:12px}
+  .horario{list-style:none;margin:0;padding:0}
+  .horario li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .horario li:last-child{border-bottom:0}
+  .horario span:last-child{color:var(--muted);text-align:right}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px}
+  footer a{text-decoration:none;font-weight:700;color:var(--ink)}
+
+  /* Visor de fotos */
+  .visor{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:9;padding:16px}
+  .visor img{max-height:90vh;border-radius:8px}
+  .visor button{position:absolute;top:12px;right:12px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer}
+  .error{padding:60px 16px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="app" hidden>
+  <div class="hero" id="hero" hidden><img id="portada" alt=""></div>
+  <div class="wrap">
+    <div class="head" id="head">
+      <img class="avatar" id="perfil" alt="" hidden>
+      <img class="logo" id="logo" alt="" hidden>
+      <h1 id="nombre"></h1>
+      <p class="frase" id="frase" hidden></p>
+    </div>
+
+    <div class="btns" id="btns">
+      <a class="btn main" id="wa" target="_blank" rel="noopener" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        <span>Agenda por WhatsApp</span></a>
+      <div class="row" id="redes">
+        <a class="btn" id="ig" target="_blank" rel="noopener" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <span>Instagram</span></a>
+        <a class="btn" id="tt" target="_blank" rel="noopener" hidden>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6Z"/></svg>
+          <span>TikTok</span></a>
+      </div>
+    </div>
+
+    <section id="sec-trabajos" hidden>
+      <h2>Mis trabajos</h2>
+      <div class="gal" id="gal"></div>
+    </section>
+
+    <section id="sec-videos" hidden>
+      <h2>Videos</h2>
+      <div class="vids" id="vids"></div>
+    </section>
+
+    <section id="sec-ubicacion" hidden>
+      <h2>Cómo llegar</h2>
+      <div class="card">
+        <p id="dir" hidden></p>
+        <a class="btn" id="maps" target="_blank" rel="noopener" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span>Abrir en Google Maps</span></a>
+      </div>
+    </section>
+
+    <section id="sec-horario" hidden>
+      <h2>Horario</h2>
+      <div class="card"><ul class="horario" id="horario"></ul></div>
+    </section>
+
+    <footer>Página hecha por <a href="https://identinfc.com/">Identi NFC</a></footer>
+  </div>
+</div>
+<div class="error" id="error" hidden>Esta página se está actualizando. Vuelve a intentarlo en un momento.</div>
+<div class="visor" id="visor" hidden><button aria-label="Cerrar">×</button><img id="visor-img" alt=""></div>
+
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  const lleno = v => Array.isArray(v) ? v.length > 0 : (v != null && String(v).trim() !== "");
+  const show = (el, ok = true) => { el.hidden = !ok; return ok; };
+  let d;
+  try {
+    // Ruta relativa: funciona igual con ?t=nfc, ?t=qr o sin nada.
+    const r = await fetch("datos.json", { cache: "no-cache" });
+    d = await r.json();
+  } catch (e) { $("error").hidden = false; return; }
+
+  // Si una foto no existe, se esconde en vez de verse rota
+  ["portada", "perfil", "logo"].forEach(id => $(id).onerror = () => { (id === "portada" ? $("hero") : $(id)).hidden = true; if (id === "portada") $("head").style.marginTop = "32px"; });
+
+  // Portada, foto y logo
+  if (lleno(d.portada)) { $("portada").src = d.portada; show($("hero")); }
+  else $("head").style.marginTop = "32px";
+  if (lleno(d.foto_perfil)) { $("perfil").src = d.foto_perfil; $("perfil").alt = d.nombre || ""; show($("perfil")); }
+  if (lleno(d.logo)) { $("logo").src = d.logo; $("logo").alt = "Logo de " + (d.nombre || ""); show($("logo")); }
+  $("nombre").textContent = d.nombre || "";
+  if (lleno(d.nombre)) document.title = d.nombre + (lleno(d.frase) ? " · " + d.frase : "");
+  if (show($("frase"), lleno(d.frase))) $("frase").textContent = d.frase;
+
+  // Botones
+  if (lleno(d.whatsapp)) {
+    const num = String(d.whatsapp).replace(/\D/g, "");
+    const tel = num.length === 10 ? "57" + num : num;
+    const msg = lleno(d.mensaje_whatsapp) ? d.mensaje_whatsapp : "Hola, vi tu página y quiero agendar una cita";
+    $("wa").href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(msg);
+    show($("wa"));
+  }
+  const usuario = u => String(u).trim().replace(/^@/, "").replace(/^https?:\/\/[^/]+\/@?/, "").replace(/\/.*$/, "");
+  if (lleno(d.instagram)) { $("ig").href = "https://www.instagram.com/" + usuario(d.instagram) + "/"; show($("ig")); }
+  if (lleno(d.tiktok)) { $("tt").href = "https://www.tiktok.com/@" + usuario(d.tiktok); show($("tt")); }
+  show($("redes"), lleno(d.instagram) || lleno(d.tiktok));
+
+  // Galería
+  const fotos = (d.trabajos || []).filter(lleno);
+  if (show($("sec-trabajos"), fotos.length > 0)) {
+    fotos.forEach((src, i) => {
+      const b = document.createElement("button");
+      b.setAttribute("aria-label", "Ver trabajo " + (i + 1));
+      const img = document.createElement("img");
+      img.src = src; img.alt = "Trabajo " + (i + 1); img.loading = "lazy";
+      img.onerror = () => { b.remove(); if (!$("gal").children.length) $("sec-trabajos").hidden = true; };
+      b.appendChild(img);
+      b.onclick = () => { $("visor-img").src = src; $("visor").hidden = false; };
+      $("gal").appendChild(b);
+    });
+  }
+  $("visor").onclick = () => { $("visor").hidden = true; };
+
+  // Videos
+  const vids = (d.videos || []).filter(v => lleno(v && (v.archivo || v)));
+  if (show($("sec-videos"), vids.length > 0)) {
+    vids.forEach(v => {
+      const el = document.createElement("video");
+      el.src = v.archivo || v; el.controls = true; el.playsInline = true; el.preload = "none";
+      if (lleno(v.portada)) el.poster = v.portada;
+      $("vids").appendChild(el);
+    });
+  }
+
+  // Ubicación
+  const hayDir = lleno(d.direccion), hayMaps = lleno(d.ubicacion_maps);
+  if (show($("sec-ubicacion"), hayDir || hayMaps)) {
+    if (show($("dir"), hayDir)) $("dir").textContent = d.direccion;
+    if (show($("maps"), hayMaps)) $("maps").href = d.ubicacion_maps;
+  }
+
+  // Horario
+  const horario = (d.horario || []).filter(h => lleno(h && h.dias) && lleno(h.horas));
+  if (show($("sec-horario"), horario.length > 0)) {
+    horario.forEach(h => {
+      const li = document.createElement("li");
+      const a = document.createElement("span"), b = document.createElement("span");
+      a.textContent = h.dias; b.textContent = h.horas || "";
+      li.append(a, b); $("horario").appendChild(li);
+    });
+  }
+
+  $("app").hidden = false;
+})();
+</script>
+</body>
+</html>

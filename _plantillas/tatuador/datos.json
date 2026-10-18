@@ -1,0 +1,29 @@
+{
+  "nombre": "",
+  "frase": "",
+  "foto_perfil": "fotos/perfil.jpg",
+  "logo": "",
+  "portada": "",
+
+  "whatsapp": "",
+  "mensaje_whatsapp": "Hola, vi tu página y quiero agendar un tatuaje",
+  "instagram": "",
+  "tiktok": "",
+
+  "direccion": "",
+  "ubicacion_maps": "",
+  "horario": [
+    { "dias": "Lunes a viernes", "horas": "" },
+    { "dias": "Sábado", "horas": "" }
+  ],
+
+  "trabajos": [
+    "fotos/trabajo1.jpg",
+    "fotos/trabajo2.jpg",
+    "fotos/trabajo3.jpg",
+    "fotos/trabajo4.jpg",
+    "fotos/trabajo5.jpg",
+    "fotos/trabajo6.jpg"
+  ],
+  "videos": []
+}
