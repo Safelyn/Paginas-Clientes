@@ -1,0 +1,50 @@
+{
+  "tema": {
+    "estilo": "claro",
+    "fondo": "#f6efe6",
+    "texto": "#3b2a20",
+    "tarjetas": "#fffaf3",
+    "acento": "#b5603c",
+    "texto_boton": "#ffffff",
+    "fuente_titulos": "Playfair Display",
+    "fuente_texto": "Nunito",
+    "titulo_mayusculas": false,
+    "bordes": "muy_redondo"
+  },
+  "nombre": "Lía Fine Line",
+  "frase": "Tatuajes finos y delicados · Envigado",
+  "foto_perfil": "fotos/perfil.jpg",
+  "logo": "fotos/logo.png",
+  "portada": "",
+  "whatsapp": "3164998453",
+  "mensaje_whatsapp": "Hola Lía, vi tu página y quiero agendar",
+  "instagram": "identi_nfc",
+  "tiktok": "",
+  "direccion": "Calle 10 # 40-20, El Poblado, Medellín",
+  "ubicacion_maps": "https://maps.google.com/?q=El+Poblado+Medellin",
+  "horario": [
+    {
+      "dias": "Lunes a viernes",
+      "horas": "10:00 a. m. – 7:00 p. m."
+    },
+    {
+      "dias": "Sábado",
+      "horas": "10:00 a. m. – 4:00 p. m."
+    },
+    {
+      "dias": "Domingo",
+      "horas": "Con cita"
+    }
+  ],
+  "trabajos": [
+    "fotos/trabajo1.jpg",
+    "fotos/trabajo2.jpg",
+    "fotos/trabajo3.jpg",
+    "fotos/trabajo4.jpg",
+    "fotos/trabajo5.jpg",
+    "fotos/trabajo6.jpg",
+    "fotos/trabajo7.jpg",
+    "fotos/trabajo8.jpg"
+  ],
+  "videos": []
+}

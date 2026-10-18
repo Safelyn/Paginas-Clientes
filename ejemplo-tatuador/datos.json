@@ -1,23 +1,41 @@
 {
+  "tema": {
+    "estilo": "oscuro",
+    "fondo": "#0d0b0b",
+    "texto": "#f2ece4",
+    "tarjetas": "#1a1615",
+    "acento": "#c8102e",
+    "texto_boton": "#ffffff",
+    "fuente_titulos": "Pirata One",
+    "fuente_texto": "Inter",
+    "titulo_mayusculas": false,
+    "bordes": "recto"
+  },
   "nombre": "Tinta Negra Tattoo",
   "frase": "Tatuajes black & grey y fine line en Medellín",
   "foto_perfil": "fotos/perfil.jpg",
   "logo": "fotos/logo.png",
   "portada": "fotos/portada.jpg",
-
   "whatsapp": "3164998453",
   "mensaje_whatsapp": "Hola, vi tu página y quiero agendar un tatuaje",
   "instagram": "identi_nfc",
   "tiktok": "identi_nfc",
-
   "direccion": "Calle 10 # 40-20, El Poblado, Medellín",
   "ubicacion_maps": "https://maps.google.com/?q=El+Poblado+Medellin",
   "horario": [
-    { "dias": "Lunes a viernes", "horas": "10:00 a. m. – 7:00 p. m." },
-    { "dias": "Sábado", "horas": "10:00 a. m. – 4:00 p. m." },
-    { "dias": "Domingo", "horas": "Con cita" }
+    {
+      "dias": "Lunes a viernes",
+      "horas": "10:00 a. m. – 7:00 p. m."
+    },
+    {
+      "dias": "Sábado",
+      "horas": "10:00 a. m. – 4:00 p. m."
+    },
+    {
+      "dias": "Domingo",
+      "horas": "Con cita"
+    }
   ],
-
   "trabajos": [
     "fotos/trabajo1.jpg",
     "fotos/trabajo2.jpg",
@@ -29,6 +47,9 @@
     "fotos/trabajo8.jpg"
   ],
   "videos": [
-    { "archivo": "fotos/video1.mp4", "portada": "fotos/video1.jpg" }
+    {
+      "archivo": "fotos/video1.mp4",
+      "portada": "fotos/video1.jpg"
+    }
   ]
 }

@@ -12,10 +12,13 @@
 <meta name="theme-color" content="#111111">
 <link rel="icon" href="fotos/perfil.jpg">
 <style>
-  :root{--bg:#f7f5f0;--ink:#111;--muted:#615d55;--line:#e3ded2;--card:#fff}
+  /* Colores y letras por defecto. Cada cliente los cambia en "tema" dentro de datos.json */
+  :root{--bg:#f7f5f0;--ink:#111;--accent:#111;--on-accent:#fff;--card:#fff;--r:14px;
+    --font-title:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --muted:color-mix(in srgb,var(--ink) 62%,var(--bg));--line:color-mix(in srgb,var(--ink) 14%,var(--bg))}
   *{box-sizing:border-box}
   html,body{margin:0}
-  body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-body);
     -webkit-font-smoothing:antialiased}
   img,video{display:block;max-width:100%}
   a{color:inherit}
@@ -26,29 +29,29 @@
   .hero{position:relative;background:var(--ink);height:190px;overflow:hidden}
   .hero img{width:100%;height:100%;object-fit:cover;opacity:.85}
   .head{text-align:center;margin-top:-64px;position:relative}
-  .avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;margin:0 auto;border:4px solid var(--bg);background:#ddd}
+  .avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;margin:0 auto;border:4px solid var(--bg);background:var(--line)}
   .logo{max-height:64px;max-width:200px;margin:14px auto 0;object-fit:contain}
-  h1{font-size:28px;line-height:1.15;margin:12px 0 4px;letter-spacing:-.01em}
+  h1{font-family:var(--font-title);font-size:30px;line-height:1.15;margin:12px 0 4px;letter-spacing:-.01em;font-weight:700}
+  .mayus h1{text-transform:uppercase;letter-spacing:.04em}
   .frase{color:var(--muted);margin:0 auto;max-width:400px}
 
   /* Botones */
   .btns{display:grid;gap:10px;margin:22px 0 6px}
   .btn{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;
-    padding:14px 18px;border-radius:14px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
-  .btn.main{background:var(--ink);color:#fff}
+    padding:14px 18px;border-radius:var(--r);border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+  .btn.main{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .btn svg{width:20px;height:20px;flex:none}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .row .btn:only-child{grid-column:1/-1}
 
   /* Secciones */
   section{margin-top:34px}
-  h2{font-size:13px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px;color:var(--muted)}
-  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:14px;overflow:hidden}
-  .gal button{all:unset;cursor:pointer;aspect-ratio:1/1;background:#ddd}
+  h2{font-family:var(--font-title);font-size:14px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px;color:var(--muted)}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:var(--r);overflow:hidden}
+  .gal button{all:unset;cursor:pointer;aspect-ratio:1/1;background:var(--line)}
   .gal img{width:100%;height:100%;object-fit:cover}
   .vids{display:grid;gap:12px}
-  .vids video{width:100%;border-radius:14px;background:#000;aspect-ratio:3/4;object-fit:cover}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .vids video{width:100%;border-radius:var(--r);background:#000;aspect-ratio:3/4;object-fit:cover}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
   .card p{margin:0}
   .card .btn{margin-top:12px}
   .horario{list-style:none;margin:0;padding:0}
@@ -57,6 +60,7 @@
   .horario span:last-child{color:var(--muted);text-align:right}
   footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px}
   footer a{text-decoration:none;font-weight:700;color:var(--ink)}
+  .hero{background:var(--accent)}
 
   /* Visor de fotos */
   .visor{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:9;padding:16px}
@@ -133,6 +137,36 @@
     d = await r.json();
   } catch (e) { $("error").hidden = false; return; }
 
+  // Tema del cliente: colores, letras y forma (todo opcional)
+  const t = d.tema || {};
+  const root = document.documentElement.style;
+  const presets = {
+    claro:  { fondo: "#f7f5f0", texto: "#111111", tarjetas: "#ffffff" },
+    oscuro: { fondo: "#0f0f10", texto: "#f3f1ec", tarjetas: "#1a1a1c" }
+  };
+  const base = presets[t.estilo] || presets.claro;
+  const color = (k, v) => { if (lleno(v)) root.setProperty(k, v); };
+  color("--bg", t.fondo || base.fondo);
+  color("--ink", t.texto || base.texto);
+  color("--card", t.tarjetas || base.tarjetas);
+  color("--accent", t.acento || t.texto || base.texto);
+  color("--on-accent", t.texto_boton || (t.acento ? "#ffffff" : (t.fondo || base.fondo)));
+  const formas = { redondo: "14px", muy_redondo: "26px", recto: "2px" };
+  root.setProperty("--r", formas[t.bordes] || "14px");
+  const fuente = (k, nombre) => {
+    if (!lleno(nombre)) return;
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = "https://fonts.googleapis.com/css2?family=" + encodeURIComponent(nombre).replace(/%20/g, "+") + ":wght@400;700&display=swap";
+    document.head.appendChild(l);
+    root.setProperty(k, "\"" + nombre + "\", system-ui, sans-serif");
+  };
+  fuente("--font-title", t.fuente_titulos);
+  fuente("--font-body", t.fuente_texto);
+  if (t.titulo_mayusculas) document.body.classList.add("mayus");
+  const meta = document.querySelector("meta[name=theme-color]");
+  if (meta) meta.content = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+
   // Si una foto no existe, se esconde en vez de verse rota
   ["portada", "perfil", "logo"].forEach(id => $(id).onerror = () => { (id === "portada" ? $("hero") : $(id)).hidden = true; if (id === "portada") $("head").style.marginTop = "32px"; });
 
@@ -157,6 +191,7 @@
   if (lleno(d.instagram)) { $("ig").href = "https://www.instagram.com/" + usuario(d.instagram) + "/"; show($("ig")); }
   if (lleno(d.tiktok)) { $("tt").href = "https://www.tiktok.com/@" + usuario(d.tiktok); show($("tt")); }
   show($("redes"), lleno(d.instagram) || lleno(d.tiktok));
+  if (!(lleno(d.instagram) && lleno(d.tiktok))) $("redes").style.gridTemplateColumns = "1fr";
 
   // Galería
   const fotos = (d.trabajos || []).filter(lleno);
