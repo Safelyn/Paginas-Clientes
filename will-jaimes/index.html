@@ -103,6 +103,15 @@
   }
   .tagline strong { color: var(--accent); font-weight: 700; }
 
+  .address {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content;
+    margin: -6px auto 20px; padding: 9px 16px; border-radius: 999px; text-decoration: none;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--accent);
+  }
+  .address svg { width: 17px; height: 17px; flex: none; color: var(--accent); }
+  .address small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+
   .socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
   .socials a {
     width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
@@ -228,6 +237,11 @@
       <h1 class="name" style="margin:0 0 14px"><img src="logo.webp" width="720" height="382" alt="Will Jaimes"></h1>
       <span class="badge">Tatuador · Medellín</span>
       <p class="tagline">Tatuajes a color y black &amp; grey en El Poblado, con <strong>realismo y anime</strong> de alto detalle.</p>
+
+      <a class="address" href="https://www.google.com/maps/search/?api=1&amp;query=Cra.+34+%237-129%2C+El+Poblado%2C+Medell%C3%ADn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span><small>Nueva dirección</small>Cra. 34 #7-129, El Poblado</span>
+      </a>
 
       <nav class="socials" aria-label="Redes sociales">
         <a href="https://www.instagram.com/willjaimesart/" target="_blank" rel="noopener" aria-label="Instagram de Will">
