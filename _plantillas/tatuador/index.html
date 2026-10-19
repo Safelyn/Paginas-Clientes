@@ -180,7 +180,11 @@
   if (show($("frase"), lleno(d.frase))) $("frase").textContent = d.frase;
 
   // Botones
-  if (lleno(d.whatsapp)) {
+  if (lleno(d.whatsapp) && /^https?:/.test(String(d.whatsapp).trim())) {
+    // Link de WhatsApp Business (wa.me/message/...): se usa tal cual
+    $("wa").href = String(d.whatsapp).trim();
+    show($("wa"));
+  } else if (lleno(d.whatsapp)) {
     const num = String(d.whatsapp).replace(/\D/g, "");
     const tel = num.length === 10 ? "57" + num : num;
     const msg = lleno(d.mensaje_whatsapp) ? d.mensaje_whatsapp : "Hola, vi tu página y quiero agendar una cita";
@@ -225,6 +229,7 @@
   if (show($("sec-ubicacion"), hayDir || hayMaps)) {
     if (show($("dir"), hayDir)) $("dir").textContent = d.direccion;
     if (show($("maps"), hayMaps)) $("maps").href = d.ubicacion_maps;
+    if (lleno(d.texto_maps)) $("maps").querySelector("span").textContent = d.texto_maps;
   }
 
   // Horario
