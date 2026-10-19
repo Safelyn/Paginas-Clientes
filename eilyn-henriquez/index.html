@@ -1,250 +1,302 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- EDITAR: nombre del cliente (sale en la pestaña y al compartir el link) -->
-<title>Eilyn Henríquez · Tatuajes y piercing</title>
-<meta name="description" content="Tatuajes fine line y piercing en Provenza, El Poblado. Agenda por WhatsApp.">
-<meta property="og:title" content="Eilyn Henríquez · Tatuajes y piercing">
-<meta property="og:description" content="Tatuajes fine line y piercing en Provenza, El Poblado.">
-<meta property="og:image" content="fotos/perfil.jpg">
-<meta name="theme-color" content="#111111">
-<link rel="icon" href="fotos/perfil.jpg">
+<title>Eilyn Henríquez · Tattoo & Piercing</title>
+<meta name="description" content="Tatuajes fine line y perforaciones en Provenza, El Poblado (Medellín). Agenda tu cita con Eilyn Henríquez por WhatsApp.">
+<meta name="theme-color" content="#10130C">
+<meta name="color-scheme" content="dark">
+
+<!-- Vista previa al compartir (WhatsApp, Instagram, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Eilyn Henríquez · Tattoo & Piercing">
+<meta property="og:description" content="Tatuajes fine line y perforaciones en Provenza, El Poblado. Agenda tu cita por WhatsApp.">
+<meta property="og:url" content="https://identinfc.com/eilyn-henriquez/">
+<meta property="og:image" content="https://identinfc.com/eilyn-henriquez/compartir.jpg">
+<meta property="og:image:alt" content="Foto de Eilyn Henríquez, tatuadora y perforadora">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/jpeg" href="icono.jpg">
+<link rel="apple-touch-icon" href="icono.jpg">
+<link rel="preload" as="image" href="portada.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
 <style>
-  /* Colores y letras por defecto. Cada cliente los cambia en "tema" dentro de datos.json */
-  :root{--bg:#f7f5f0;--ink:#111;--accent:#111;--on-accent:#fff;--card:#fff;--r:14px;
-    --font-title:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    --muted:color-mix(in srgb,var(--ink) 62%,var(--bg));--line:color-mix(in srgb,var(--ink) 14%,var(--bg))}
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-body);
-    -webkit-font-smoothing:antialiased}
-  img,video{display:block;max-width:100%}
-  a{color:inherit}
-  .wrap{max-width:560px;margin:0 auto;padding:0 16px 32px}
-  [hidden]{display:none!important}
+  :root {
+    --bg: #10130C;
+    --surface: #1A1F14;
+    --surface-2: #252B1C;
+    --ink: #F4ECE2;
+    --muted: #B8AE9B;
+    --accent: #E08A55;
+    --accent-deep: #A8502A;
+    --accent-soft: rgba(224, 138, 85, 0.14);
+    --blood: #E0344F;
+    --star: #F5B400;
+    --line: rgba(246, 238, 247, 0.12);
+    --shadow: 0 16px 34px -18px rgba(224, 138, 85, 0.6);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --display: "Cormorant Garamond", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
 
-  /* Portada */
-  .hero{position:relative;background:var(--ink);height:190px;overflow:hidden}
-  .hero img{width:100%;height:100%;object-fit:cover;opacity:.85}
-  .head{text-align:center;margin-top:-64px;position:relative}
-  .avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;margin:0 auto;border:4px solid var(--bg);background:var(--line)}
-  .logo{max-height:64px;max-width:200px;margin:14px auto 0;object-fit:contain}
-  h1{font-family:var(--font-title);font-size:30px;line-height:1.15;margin:12px 0 4px;letter-spacing:-.01em;font-weight:700}
-  .mayus h1{text-transform:uppercase;letter-spacing:.04em}
-  .frase{color:var(--muted);margin:0 auto;max-width:400px}
+  /* Fondo difuminado con la misma foto (se nota sobre todo en pantallas anchas) */
+  .ambient {
+    position: absolute; inset: 0 0 auto 0; height: 1100px; z-index: 0; pointer-events: none;
+    background: url("portada.jpg") center top / cover no-repeat;
+    filter: blur(48px) saturate(1.3);
+    opacity: 0.35;
+    transform: scale(1.15);
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+            mask-image: linear-gradient(to bottom, #000 40%, transparent);
+  }
 
-  /* Botones */
-  .btns{display:grid;gap:10px;margin:22px 0 6px}
-  .btn{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;
-    padding:14px 18px;border-radius:var(--r);border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
-  .btn.main{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-  .btn svg{width:20px;height:20px;flex:none}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .page { position: relative; z-index: 1; width: 100%; max-width: 480px; margin: 0 auto; }
 
-  /* Secciones */
-  section{margin-top:34px}
-  h2{font-family:var(--font-title);font-size:14px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px;color:var(--muted)}
-  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:var(--r);overflow:hidden}
-  .gal button{all:unset;cursor:pointer;aspect-ratio:1/1;background:var(--line)}
-  .gal img{width:100%;height:100%;object-fit:cover}
-  .vids{display:grid;gap:12px}
-  .vids video{width:100%;border-radius:var(--r);background:#000;aspect-ratio:3/4;object-fit:cover}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-  .card p{margin:0}
-  .card .btn{margin-top:12px}
-  .horario{list-style:none;margin:0;padding:0}
-  .horario li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
-  .horario li:last-child{border-bottom:0}
-  .horario span:last-child{color:var(--muted);text-align:right}
-  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px}
-  footer a{text-decoration:none;font-weight:700;color:var(--ink)}
-  .hero{background:var(--accent)}
+  /* Foto principal grande que se funde con el contenido */
+  .hero { margin: 0; }
+  .hero img {
+    display: block; width: 100%; height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
 
-  /* Visor de fotos */
-  .visor{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:9;padding:16px}
-  .visor img{max-height:90vh;border-radius:8px}
-  .visor button{position:absolute;top:12px;right:12px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer}
-  .error{padding:60px 16px;text-align:center;color:var(--muted)}
+  .content {
+    position: relative; margin-top: -150px;
+    padding: 0 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+  .name {
+    margin: 0 0 6px; text-align: center;
+    font-family: var(--display); font-style: italic; font-weight: 600; line-height: 0.95;
+    font-size: clamp(50px, 15vw, 66px); letter-spacing: 0;
+    color: var(--ink);
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 40px rgba(224, 138, 85, 0.45);
+  }
+  .badge {
+    display: block; width: fit-content; margin: 0 auto 14px; padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-align: center;
+    color: var(--accent); background: var(--surface); border: 1px solid var(--line);
+    box-shadow: 0 8px 20px -14px rgba(224, 138, 85, 0.8);
+  }
+  .tagline {
+    text-align: center; font-size: 15px; line-height: 1.5; color: var(--ink);
+    margin: 0 auto 20px; max-width: 32ch;
+    text-shadow: 0 0 12px var(--bg), 0 0 4px var(--bg);
+  }
+  .tagline strong { color: var(--accent); font-weight: 700; }
+
+  .socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
+  .socials a {
+    width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--surface); display: flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .socials a svg { width: 20px; height: 20px; }
+  .socials a:hover, .socials a:focus-visible {
+    border-color: var(--accent); background: var(--accent-soft); color: var(--accent); transform: translateY(-2px);
+  }
+
+  /* Botón principal */
+  .link-cta {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 17px 14px; margin-bottom: 32px; border-radius: 18px;
+    text-decoration: none; text-align: center;
+    font-size: clamp(16px, 4.6vw, 19px); font-weight: 800;
+    background: linear-gradient(135deg, #D2743F, #8E3F1E);
+    color: #fff; box-shadow: var(--shadow);
+    animation: pulse 2.6s ease-in-out infinite;
+    transition: transform 0.15s ease;
+  }
+  .link-cta svg { width: 22px; height: 22px; flex: none; }
+  .link-cta::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shine 3.5s ease-in-out infinite;
+  }
+  .link-cta:hover, .link-cta:focus-visible { transform: translateY(-1px); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(224, 138, 85, 0.45); }
+    50% { box-shadow: var(--shadow), 0 0 0 9px rgba(224, 138, 85, 0); }
+  }
+  @keyframes shine {
+    0%, 60% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .section-title {
+    font-family: var(--display); font-style: italic; font-weight: 600; letter-spacing: 0;
+    font-size: 32px; line-height: 1.1; margin: 0 0 12px; color: var(--ink);
+  }
+  .section-title::before { content: "✦ "; color: var(--accent); font-family: var(--sans); font-size: 20px; vertical-align: 3px; }
+
+  /* Videos */
+  .videos {
+    display: flex; gap: 12px; overflow-x: auto;
+    margin: 0 -20px 32px; padding: 0 20px 10px;
+    scroll-snap-type: x mandatory; scroll-padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .videos::-webkit-scrollbar { display: none; }
+  .clip {
+    position: relative; flex: none; width: min(62vw, 230px); aspect-ratio: 9 / 16;
+    margin: 0; border-radius: 20px; overflow: hidden; scroll-snap-align: start;
+    background: var(--surface-2); border: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  .clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .clip figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: #fff; font-size: 14px; font-weight: 700; pointer-events: none;
+  }
+
+  /* Reseñas */
+  .rating {
+    display: flex; align-items: center; gap: 8px; margin: -4px 0 14px;
+    font-size: 14px; color: var(--muted);
+  }
+  .rating b { font-size: 18px; color: var(--ink); }
+  .stars { color: var(--star); letter-spacing: 1px; }
+  .reviews { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .review {
+    margin: 0; padding: 16px 18px; border-radius: 18px;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .review .stars { font-size: 15px; }
+  .review blockquote { margin: 8px 0 10px; font-size: 15px; line-height: 1.5; }
+  .review figcaption { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .review-actions { display: flex; gap: 10px; margin-bottom: 32px; }
+  .btn-soft {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 10px; border-radius: 14px; text-decoration: none; text-align: center;
+    font-size: 14px; font-weight: 700; line-height: 1.3;
+    color: var(--accent); background: var(--accent-soft); border: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .btn-soft:hover, .btn-soft:focus-visible { border-color: var(--accent); }
+
+  /* Enlaces secundarios */
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-card {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 16px 18px;
+    border-radius: 16px; text-decoration: none; font-size: 15px; font-weight: 600;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .link-card .icon { flex: none; width: 22px; height: 22px; color: var(--accent); }
+  .link-card small { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .link-card .arrow { margin-left: auto; color: var(--muted); }
+  .link-card:hover, .link-card:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
+
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  footer {
+    text-align: center; margin-top: 36px; font-size: 12px; line-height: 1.5; color: var(--muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::after { transition: none !important; animation: none !important; }
+  }
 </style>
 </head>
 <body>
-<div id="app" hidden>
-  <div class="hero" id="hero" hidden><img id="portada" alt=""></div>
-  <div class="wrap">
-    <div class="head" id="head">
-      <img class="avatar" id="perfil" alt="" hidden>
-      <img class="logo" id="logo" alt="" hidden>
-      <h1 id="nombre"></h1>
-      <p class="frase" id="frase" hidden></p>
-    </div>
+  <div class="ambient" aria-hidden="true"></div>
 
-    <div class="btns" id="btns">
-      <a class="btn main" id="wa" target="_blank" rel="noopener" hidden>
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
-        <span>Agenda por WhatsApp</span></a>
-      <div class="row" id="redes">
-        <a class="btn" id="ig" target="_blank" rel="noopener" hidden>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          <span>Instagram</span></a>
-        <a class="btn" id="tt" target="_blank" rel="noopener" hidden>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6Z"/></svg>
-          <span>TikTok</span></a>
+  <div class="page">
+    <figure class="hero">
+      <img src="portada.jpg" width="900" height="872" alt="Eilyn Henríquez de perfil, con su cabello rojo y sus perforaciones en la cara.">
+    </figure>
+
+    <main class="content">
+      <h1 class="name">Eilyn<br>Henríquez</h1>
+      <span class="badge">Tatuadora & perforadora · Medellín</span>
+      <p class="tagline">Tatuajes fine line y perforaciones en Provenza, El Poblado, con <strong>diseños botánicos</strong> y procedimientos seguros.</p>
+
+      <nav class="socials" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/eilynhenriquez/" target="_blank" rel="noopener" aria-label="Instagram de Eilyn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@unborncreature" target="_blank" rel="noopener" aria-label="TikTok de Eilyn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg>
+        </a>
+        <a href="https://wa.me/message/UUVXJYN247BUL1" target="_blank" rel="noopener" aria-label="Escribir a Eilyn por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+        </a>
+        <a href="https://maps.app.goo.gl/nK7sukkWbVciE3ee7" target="_blank" rel="noopener" aria-label="Reseñas y ubicación de Eilyn en Google">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3zM12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22zM6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14zM12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.4 3-4.1 5.6-4.1z"/></svg>
+        </a>
+      </nav>
+
+      <a href="https://wa.me/message/UUVXJYN247BUL1" target="_blank" rel="noopener" class="link-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.5 3.9 3.5.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+        Agenda tu cita
+      </a>
+
+      <h2 class="section-title">Mis trabajos</h2>
+      <div class="videos" aria-label="Videos de tatuajes y perforaciones hechos por Eilyn">
+        <figure class="clip">
+          <video src="videos/tatuaje-orquideas.mp4" poster="videos/tatuaje-orquideas.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de un tatuaje de orquídeas en línea fina en la pierna"></video>
+          <figcaption>Orquídeas fine line</figcaption>
+        </figure>
+        <figure class="clip">
+          <video src="videos/perforaciones-oreja.mp4" poster="videos/perforaciones-oreja.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de Eilyn haciendo una perforación en la oreja"></video>
+          <figcaption>Perforaciones en oreja</figcaption>
+        </figure>
+        <figure class="clip">
+          <video src="videos/experiencia-estudio.mp4" poster="videos/experiencia-estudio.jpg" autoplay muted loop playsinline preload="auto" aria-label="Video de clientas en el estudio de Eilyn"></video>
+          <figcaption>La experiencia en el estudio</figcaption>
+        </figure>
       </div>
-    </div>
 
-    <section id="sec-trabajos" hidden>
-      <h2>Mis trabajos</h2>
-      <div class="gal" id="gal"></div>
-    </section>
-
-    <section id="sec-videos" hidden>
-      <h2>Videos</h2>
-      <div class="vids" id="vids"></div>
-    </section>
-
-    <section id="sec-ubicacion" hidden>
-      <h2>Cómo llegar</h2>
-      <div class="card">
-        <p id="dir" hidden></p>
-        <a class="btn" id="maps" target="_blank" rel="noopener" hidden>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-          <span>Abrir en Google Maps</span></a>
+      <h2 class="section-title">Lo que dicen de mí</h2>
+      <div class="review-actions">
+        <a class="btn-soft" href="https://maps.app.goo.gl/nK7sukkWbVciE3ee7" target="_blank" rel="noopener">Ver mis reseñas en Google</a>
+        <a class="btn-soft" href="https://maps.app.goo.gl/nK7sukkWbVciE3ee7" target="_blank" rel="noopener">Déjame tu reseña ★</a>
       </div>
-    </section>
 
-    <section id="sec-horario" hidden>
-      <h2>Horario</h2>
-      <div class="card"><ul class="horario" id="horario"></ul></div>
-    </section>
+      <div class="links">
+        <a href="https://maps.app.goo.gl/nK7sukkWbVciE3ee7" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <span>Cómo llegar<small>Provenza · El Poblado, Medellín</small></span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.instagram.com/eilynhenriquez/" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></span>
+          <span>Sígueme en Instagram</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.tiktok.com/@unborncreature" target="_blank" rel="noopener" class="link-card">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3c.4 2.2 1.9 3.7 4.1 4v3c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.2-2.6 5.8-5.8 5.8S3 18.4 3 15.2s2.6-5.8 5.8-5.8c.4 0 .8 0 1.2.1v3.1a2.8 2.8 0 1 0 2.8 2.8V3h1.7z"/></svg></span>
+          <span>Mira más videos en TikTok</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
 
-    <footer>Página hecha por <a href="https://identinfc.com/">Identi NFC</a></footer>
+      <footer>Eilyn Henríquez · Tattoo & Piercing · Provenza, El Poblado · Medellín</footer>
+    </main>
   </div>
-</div>
-<div class="error" id="error" hidden>Esta página se está actualizando. Vuelve a intentarlo en un momento.</div>
-<div class="visor" id="visor" hidden><button aria-label="Cerrar">×</button><img id="visor-img" alt=""></div>
 
 <script>
-(async () => {
-  const $ = id => document.getElementById(id);
-  const lleno = v => Array.isArray(v) ? v.length > 0 : (v != null && String(v).trim() !== "");
-  const show = (el, ok = true) => { el.hidden = !ok; return ok; };
-  let d;
-  try {
-    // Ruta relativa: funciona igual con ?t=nfc, ?t=qr o sin nada.
-    const r = await fetch("datos.json", { cache: "no-cache" });
-    d = await r.json();
-  } catch (e) { $("error").hidden = false; return; }
-
-  // Tema del cliente: colores, letras y forma (todo opcional)
-  const t = d.tema || {};
-  const root = document.documentElement.style;
-  const presets = {
-    claro:  { fondo: "#f7f5f0", texto: "#111111", tarjetas: "#ffffff" },
-    oscuro: { fondo: "#0f0f10", texto: "#f3f1ec", tarjetas: "#1a1a1c" }
-  };
-  const base = presets[t.estilo] || presets.claro;
-  const color = (k, v) => { if (lleno(v)) root.setProperty(k, v); };
-  color("--bg", t.fondo || base.fondo);
-  color("--ink", t.texto || base.texto);
-  color("--card", t.tarjetas || base.tarjetas);
-  color("--accent", t.acento || t.texto || base.texto);
-  color("--on-accent", t.texto_boton || (t.acento ? "#ffffff" : (t.fondo || base.fondo)));
-  const formas = { redondo: "14px", muy_redondo: "26px", recto: "2px" };
-  root.setProperty("--r", formas[t.bordes] || "14px");
-  const fuente = (k, nombre) => {
-    if (!lleno(nombre)) return;
-    const l = document.createElement("link");
-    l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?family=" + encodeURIComponent(nombre).replace(/%20/g, "+") + ":wght@400;700&display=swap";
-    document.head.appendChild(l);
-    root.setProperty(k, "\"" + nombre + "\", system-ui, sans-serif");
-  };
-  fuente("--font-title", t.fuente_titulos);
-  fuente("--font-body", t.fuente_texto);
-  if (t.titulo_mayusculas) document.body.classList.add("mayus");
-  const meta = document.querySelector("meta[name=theme-color]");
-  if (meta) meta.content = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
-
-  // Si una foto no existe, se esconde en vez de verse rota
-  ["portada", "perfil", "logo"].forEach(id => $(id).onerror = () => { (id === "portada" ? $("hero") : $(id)).hidden = true; if (id === "portada") $("head").style.marginTop = "32px"; });
-
-  // Portada, foto y logo
-  if (lleno(d.portada)) { $("portada").src = d.portada; show($("hero")); }
-  else $("head").style.marginTop = "32px";
-  if (lleno(d.foto_perfil)) { $("perfil").src = d.foto_perfil; $("perfil").alt = d.nombre || ""; show($("perfil")); }
-  if (lleno(d.logo)) { $("logo").src = d.logo; $("logo").alt = "Logo de " + (d.nombre || ""); show($("logo")); }
-  $("nombre").textContent = d.nombre || "";
-  if (lleno(d.nombre)) document.title = d.nombre + (lleno(d.frase) ? " · " + d.frase : "");
-  if (show($("frase"), lleno(d.frase))) $("frase").textContent = d.frase;
-
-  // Botones
-  if (lleno(d.whatsapp) && /^https?:/.test(String(d.whatsapp).trim())) {
-    // Link de WhatsApp Business (wa.me/message/...): se usa tal cual
-    $("wa").href = String(d.whatsapp).trim();
-    show($("wa"));
-  } else if (lleno(d.whatsapp)) {
-    const num = String(d.whatsapp).replace(/\D/g, "");
-    const tel = num.length === 10 ? "57" + num : num;
-    const msg = lleno(d.mensaje_whatsapp) ? d.mensaje_whatsapp : "Hola, vi tu página y quiero agendar una cita";
-    $("wa").href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(msg);
-    show($("wa"));
-  }
-  const usuario = u => String(u).trim().replace(/^@/, "").replace(/^https?:\/\/[^/]+\/@?/, "").replace(/\/.*$/, "");
-  if (lleno(d.instagram)) { $("ig").href = "https://www.instagram.com/" + usuario(d.instagram) + "/"; show($("ig")); }
-  if (lleno(d.tiktok)) { $("tt").href = "https://www.tiktok.com/@" + usuario(d.tiktok); show($("tt")); }
-  show($("redes"), lleno(d.instagram) || lleno(d.tiktok));
-  if (!(lleno(d.instagram) && lleno(d.tiktok))) $("redes").style.gridTemplateColumns = "1fr";
-
-  // Galería
-  const fotos = (d.trabajos || []).filter(lleno);
-  if (show($("sec-trabajos"), fotos.length > 0)) {
-    fotos.forEach((src, i) => {
-      const b = document.createElement("button");
-      b.setAttribute("aria-label", "Ver trabajo " + (i + 1));
-      const img = document.createElement("img");
-      img.src = src; img.alt = "Trabajo " + (i + 1); img.loading = "lazy";
-      img.onerror = () => { b.remove(); if (!$("gal").children.length) $("sec-trabajos").hidden = true; };
-      b.appendChild(img);
-      b.onclick = () => { $("visor-img").src = src; $("visor").hidden = false; };
-      $("gal").appendChild(b);
+  // Algunos celulares (por ejemplo, iPhone en modo ahorro de batería) bloquean la
+  // reproducción automática. En ese caso, el video arranca al tocarlo.
+  document.querySelectorAll(".clip video").forEach(function (video) {
+    video.addEventListener("click", function () {
+      if (video.paused) video.play(); else video.pause();
     });
-  }
-  $("visor").onclick = () => { $("visor").hidden = true; };
-
-  // Videos
-  const vids = (d.videos || []).filter(v => lleno(v && (v.archivo || v)));
-  if (show($("sec-videos"), vids.length > 0)) {
-    vids.forEach(v => {
-      const el = document.createElement("video");
-      el.src = v.archivo || v; el.controls = true; el.playsInline = true; el.preload = "none";
-      if (lleno(v.portada)) el.poster = v.portada;
-      $("vids").appendChild(el);
-    });
-  }
-
-  // Ubicación
-  const hayDir = lleno(d.direccion), hayMaps = lleno(d.ubicacion_maps);
-  if (show($("sec-ubicacion"), hayDir || hayMaps)) {
-    if (show($("dir"), hayDir)) $("dir").textContent = d.direccion;
-    if (show($("maps"), hayMaps)) $("maps").href = d.ubicacion_maps;
-    if (lleno(d.texto_maps)) $("maps").querySelector("span").textContent = d.texto_maps;
-  }
-
-  // Horario
-  const horario = (d.horario || []).filter(h => lleno(h && h.dias) && lleno(h.horas));
-  if (show($("sec-horario"), horario.length > 0)) {
-    horario.forEach(h => {
-      const li = document.createElement("li");
-      const a = document.createElement("span"), b = document.createElement("span");
-      a.textContent = h.dias; b.textContent = h.horas || "";
-      li.append(a, b); $("horario").appendChild(li);
-    });
-  }
-
-  $("app").hidden = false;
-})();
+  });
 </script>
+
 </body>
 </html>
