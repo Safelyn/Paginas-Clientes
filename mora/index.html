@@ -7,7 +7,7 @@
 <meta name="description" content="Soy Mora. Si me encontraste, escríbele a mi familia o envíale tu ubicación por WhatsApp.">
 <!-- Página con datos de contacto de una familia: que no aparezca en buscadores -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#7FCB95">
+<meta name="theme-color" content="#2F8F4E">
 <meta name="color-scheme" content="light">
 
 <meta property="og:type" content="website">
@@ -27,12 +27,12 @@
 
 <style>
   :root {
-    --bg: #DDF3E3;
+    --bg: #A2DD97;
     --card: #FFFFFF;
     --ink: #2B2224;
     --muted: #6F6366;
-    --accent: #7FCB95;
-    --accent-ink: #0F3019;
+    --accent: #2F8F4E;
+    --accent-ink: #FFFFFF;
     --wa: #128C4B;
     --wa-deep: #0B6B38;
     --line: rgba(43, 34, 36, 0.1);
@@ -48,21 +48,13 @@
   .page { width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
 
   .hero { margin: 0; position: relative; }
-  .hero img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: cover; object-position: center 30%; }
+  .hero img { display: block; width: 100%; height: auto; object-fit: cover; }
   .hero::after {
     content: ""; position: absolute; inset: auto 0 0 0; height: 90px;
     background: linear-gradient(to bottom, transparent, var(--bg));
   }
 
   /* Foto en círculo, como la placa */
-  .hero.redonda { padding: 30px 0 0; text-align: center; }
-  .hero.redonda::after { display: none; }
-  .hero.redonda img {
-    width: min(74%, 330px); height: auto; max-height: none; aspect-ratio: 1; margin: 0 auto;
-    border-radius: 50%; object-fit: cover; border: 6px solid #fff;
-    box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.45);
-  }
-  .hero.redonda + .content { margin-top: -20px; }
 
   .content { position: relative; margin-top: -54px; padding: 0 18px; }
 
@@ -159,8 +151,8 @@
 </head>
 <body>
   <div class="page">
-    <figure class="hero redonda">
-      <img src="foto.jpg" width="640" height="640" alt="Mora, una perrita negra de orejas caídas y ojos cafés, sobre un fondo verde menta con corazones.">
+    <figure class="hero">
+      <img src="foto.jpg" width="1122" height="1402" alt="Mora, una perrita negra de orejas caídas y ojos cafés, sentada.">
     </figure>
 
     <main class="content">
