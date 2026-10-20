@@ -48,21 +48,11 @@
   .page { width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
 
   .hero { margin: 0; position: relative; }
-  .hero img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: cover; object-position: center 30%; }
+  .hero img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: cover; object-position: center 40%; }
   .hero::after {
     content: ""; position: absolute; inset: auto 0 0 0; height: 90px;
     background: linear-gradient(to bottom, transparent, var(--bg));
   }
-
-  /* Foto en círculo, como la placa */
-  .hero.redonda { padding: 30px 0 0; text-align: center; }
-  .hero.redonda::after { display: none; }
-  .hero.redonda img {
-    width: min(74%, 330px); height: auto; max-height: none; aspect-ratio: 1; margin: 0 auto;
-    border-radius: 50%; object-fit: cover; border: 6px solid #fff;
-    box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.45);
-  }
-  .hero.redonda + .content { margin-top: -20px; }
 
   .content { position: relative; margin-top: -54px; padding: 0 18px; }
 
@@ -159,8 +149,8 @@
 </head>
 <body>
   <div class="page">
-    <figure class="hero redonda">
-      <img src="foto.jpg" width="640" height="640" alt="Mia, una gata atigrada café de ojos verdes, sobre un fondo lila con corazones.">
+    <figure class="hero">
+      <img src="foto.jpg" width="1145" height="1374" alt="Mia, una gata atigrada café de ojos verdes, sobre un fondo lila.">
     </figure>
 
     <main class="content">
