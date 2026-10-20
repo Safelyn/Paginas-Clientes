@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Canela · Si me encontraste, ayúdame a volver a casa</title>
+<meta name="description" content="Soy Canela. Si me encontraste, escríbele a mi familia o envíale tu ubicación por WhatsApp.">
+<!-- Página con datos de contacto de una familia: que no aparezca en buscadores -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#E7B444">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Canela · Placa Identi">
+<meta property="og:description" content="Si me encontraste, ayúdame a volver a casa.">
+<meta property="og:url" content="https://identinfc.com/canela/">
+<meta property="og:image" content="https://identinfc.com/canela/foto.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/jpeg" href="foto.jpg">
+<link rel="apple-touch-icon" href="foto.jpg">
+<link rel="preload" as="image" href="foto.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FCF0C9;
+    --card: #FFFFFF;
+    --ink: #2B2224;
+    --muted: #6F6366;
+    --accent: #E7B444;
+    --accent-ink: #3A2806;
+    --wa: #128C4B;
+    --wa-deep: #0B6B38;
+    --line: rgba(43, 34, 36, 0.1);
+    --round: "Fredoka", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100svh;
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    overflow-x: hidden;
+  }
+  .page { width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
+
+  .hero { margin: 0; position: relative; }
+  .hero img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: cover; object-position: center 30%; }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 90px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+  }
+
+  .content { position: relative; margin-top: -54px; padding: 0 18px; }
+
+  .alert {
+    display: block; width: fit-content; margin: 0 auto 10px; padding: 7px 14px; border-radius: 999px;
+    background: var(--ink); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  }
+  h1 {
+    margin: 0; text-align: center; font-family: var(--round); font-weight: 700;
+    font-size: clamp(48px, 15vw, 64px); line-height: 1; color: var(--ink);
+  }
+  .lead { text-align: center; font-size: 17px; line-height: 1.45; margin: 10px auto 22px; max-width: 30ch; }
+
+  /* Botón principal: enviar ubicación */
+  .btn-ubicacion {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%; min-height: 76px; padding: 16px; border: 0; border-radius: 22px; cursor: pointer;
+    background: linear-gradient(135deg, #1DAA61, var(--wa));
+    color: #fff; font: 700 clamp(19px, 5.4vw, 22px)/1.2 var(--round);
+    box-shadow: 0 14px 28px -14px rgba(18, 140, 75, 0.8);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .btn-ubicacion svg { width: 30px; height: 30px; flex: none; }
+  .btn-ubicacion:disabled { opacity: 0.8; animation: none; cursor: progress; }
+  .btn-ubicacion:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 14px 28px -14px rgba(18, 140, 75, 0.8), 0 0 0 0 rgba(29, 170, 97, 0.45); }
+    50% { box-shadow: 0 14px 28px -14px rgba(18, 140, 75, 0.8), 0 0 0 10px rgba(29, 170, 97, 0); }
+  }
+  .hint { text-align: center; font-size: 13px; color: var(--muted); margin: 10px 0 0; line-height: 1.4; }
+  .hint[data-tipo="aviso"] { color: var(--ink); background: #FFF6D6; border-radius: 12px; padding: 10px 12px; }
+
+  /* Teléfono grande */
+  .contacto {
+    margin-top: 22px; padding: 20px 18px; border-radius: 22px; background: var(--card);
+    border: 1px solid var(--line); text-align: center;
+  }
+  .contacto .label { margin: 0; font-size: 14px; color: var(--muted); }
+  .contacto .duenio { margin: 2px 0 0; font-family: var(--round); font-weight: 600; font-size: 20px; }
+  .telefono {
+    display: block; margin: 8px 0 14px; text-decoration: none; color: var(--ink);
+    font-family: var(--round); font-weight: 700; font-size: clamp(34px, 10.5vw, 44px); letter-spacing: 0.01em;
+  }
+  .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .acciones a {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 54px; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 16px;
+  }
+  .acciones svg { width: 22px; height: 22px; flex: none; }
+  .llamar { background: var(--accent); color: var(--accent-ink); }
+  .escribir { background: #E7F6EE; color: var(--wa-deep); }
+  .acciones a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  /* Pasos */
+  .pasos { margin-top: 22px; padding: 18px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
+  .pasos h2 { margin: 0 0 12px; font-family: var(--round); font-weight: 600; font-size: 20px; }
+  .pasos ol { margin: 0; padding: 0; list-style: none; counter-reset: paso; display: grid; gap: 12px; }
+  .pasos li { counter-increment: paso; display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.45; }
+  .pasos li::before {
+    content: counter(paso); flex: none; width: 28px; height: 28px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--accent); color: var(--accent-ink);
+    font-family: var(--round); font-weight: 700; font-size: 15px;
+  }
+  .sms { grid-column: 1 / -1; background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+
+  /* Mensaje de respaldo */
+  .mensaje { margin-top: 22px; padding: 18px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
+  .mensaje h2 { margin: 0 0 4px; font-family: var(--round); font-weight: 600; font-size: 20px; }
+  .mensaje > p { margin: 0 0 14px; font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .mensaje label { display: block; font-size: 14px; font-weight: 600; margin: 12px 0 6px; }
+  .mensaje input[type=text], .mensaje input[type=tel], .mensaje textarea {
+    width: 100%; padding: 13px 14px; border-radius: 14px; border: 1.5px solid var(--line);
+    font: 16px/1.4 var(--sans); color: var(--ink); background: #FCFAF8;
+  }
+  .mensaje textarea { min-height: 96px; resize: vertical; }
+  .mensaje input:focus, .mensaje textarea:focus { outline: none; border-color: var(--accent); }
+  .mensaje .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--ink); }
+  .mensaje .check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
+  .mensaje button {
+    width: 100%; min-height: 54px; margin-top: 14px; border: 0; border-radius: 16px; cursor: pointer;
+    background: var(--ink); color: #fff; font: 700 16px var(--sans);
+  }
+  .mensaje button:disabled { opacity: 0.7; cursor: progress; }
+  .mensaje .estado { margin: 10px 0 0; font-size: 14px; text-align: center; }
+  .mensaje .estado.error { color: #B3261E; }
+  .oculto { display: none !important; }
+  .gracias { text-align: center; padding: 8px 0; font-size: 16px; line-height: 1.5; }
+
+  footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  footer a { color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+  <div class="page">
+    <figure class="hero">
+      <img src="foto.jpg" width="1145" height="1214" alt="Canela, una perrita de pelo color canela y ojos miel, sobre un fondo amarillo con huesitos.">
+    </figure>
+
+    <main class="content">
+      <span class="alert">🐶 ¿Me encontraste?</span>
+      <h1>Canela</h1>
+      <p class="lead">Estoy lejos de casa. Ayúdame a volver: avísale a mi familia dónde estoy.</p>
+
+      <button type="button" class="btn-ubicacion" id="enviar-ubicacion">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
+        <span id="texto-boton">Enviar mi ubicación al dueño</span>
+      </button>
+      <p class="hint" id="aviso">Se abre WhatsApp con tu ubicación lista para enviar. Tu celular te va a pedir permiso.</p>
+
+      <section class="contacto" aria-label="Contacto de la familia">
+        <p class="label">Mi familia</p>
+        <p class="duenio">Santiago Vasquez</p>
+        <a class="telefono" href="tel:+573234646085">323 464 6085</a>
+        <div class="acciones">
+          <a class="llamar" href="tel:+573234646085">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+            Llamar
+          </a>
+          <a class="escribir" href="https://wa.me/573234646085?text=Hola%20Santiago%2C%20encontr%C3%A9%20a%20Canela%20%F0%9F%90%BE" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.1a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+            WhatsApp
+          </a>
+          <a class="sms" href="sms:+573234646085?&body=Hola%20Santiago%2C%20encontr%C3%A9%20a%20Canela.%20Escr%C3%ADbeme%20o%20ll%C3%A1mame%20a%20este%20n%C3%BAmero.">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+            Mandar SMS (sin internet)
+          </a>
+        </div>
+      </section>
+
+      <section class="pasos">
+        <h2>Si me encontraste</h2>
+        <ol>
+          <li>Mantenme en un lugar seguro, lejos de la calle. Soy amigable, pero puedo asustarme.</li>
+          <li>Toca el botón verde para enviarle tu ubicación a mi familia.</li>
+          <li>Si no contestan, llama, manda un SMS o déjales un mensaje aquí abajo. ¡Gracias por ayudarme! 💛</li>
+        </ol>
+      </section>
+
+      <section class="mensaje" aria-labelledby="titulo-mensaje">
+        <h2 id="titulo-mensaje">¿No te contestan? Déjale un mensaje</h2>
+        <p>Le llega por correo a Identi NFC y nosotros avisamos de inmediato a la familia de Canela.</p>
+        <form id="form-mensaje" novalidate>
+          <label for="m-tel">Tu WhatsApp o teléfono</label>
+          <input type="tel" id="m-tel" name="Teléfono de quien encontró" autocomplete="tel" inputmode="tel" placeholder="Ej: 300 123 4567" required>
+          <label for="m-nombre">Tu nombre (opcional)</label>
+          <input type="text" id="m-nombre" name="Nombre de quien encontró" autocomplete="name">
+          <label for="m-texto">Mensaje</label>
+          <textarea id="m-texto" name="Mensaje" placeholder="Ej: La encontré en el parque de Laureles, la tengo en mi casa."></textarea>
+          <label class="check"><input type="checkbox" id="m-ubic" checked> Incluir mi ubicación actual</label>
+          <input type="text" name="_honey" class="oculto" tabindex="-1" autocomplete="off">
+          <button type="submit" id="m-boton">Enviar mensaje</button>
+          <p class="estado" id="m-estado" role="status"></p>
+        </form>
+        <p class="gracias oculto" id="m-gracias">¡Gracias! 💛 Ya recibimos tu mensaje y le avisamos a la familia de Canela. Te van a contactar al número que dejaste.</p>
+      </section>
+
+      <footer>
+        Placa inteligente de <a href="https://identinfc.com/">Identi NFC</a><br>
+        Tu ubicación solo se envía si tú lo decides, y va directo al WhatsApp de la familia.
+      </footer>
+    </main>
+  </div>
+
+<script>
+  (function () {
+    var NOMBRE = "Canela";
+    var TELEFONO = "573234646085";
+    var boton = document.getElementById("enviar-ubicacion");
+    var texto = document.getElementById("texto-boton");
+    var aviso = document.getElementById("aviso");
+    var textoOriginal = texto.textContent;
+
+    function abrirWhatsApp(coords) {
+      var mensaje = "Hola, encontré a " + NOMBRE + " 🐾.";
+      if (coords) {
+        mensaje += " Estoy aquí: https://maps.google.com/?q=" +
+          coords.latitude.toFixed(6) + "," + coords.longitude.toFixed(6);
+      } else {
+        mensaje += " Te comparto dónde estoy.";
+      }
+      window.location.href = "https://wa.me/" + TELEFONO + "?text=" + encodeURIComponent(mensaje);
+    }
+
+    function sinUbicacion() {
+      aviso.dataset.tipo = "aviso";
+      aviso.textContent = "No pudimos leer tu ubicación. Te abrimos WhatsApp: ahí toca el clip 📎 › Ubicación y envíala.";
+      boton.disabled = false;
+      texto.textContent = textoOriginal;
+      setTimeout(function () { abrirWhatsApp(null); }, 1800);
+    }
+
+    boton.addEventListener("click", function () {
+      if (!navigator.geolocation) { sinUbicacion(); return; }
+      boton.disabled = true;
+      texto.textContent = "Buscando tu ubicación…";
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          boton.disabled = false;
+          texto.textContent = textoOriginal;
+          abrirWhatsApp(pos.coords);
+        },
+        sinUbicacion,
+        { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
+      );
+    });
+  })();
+
+  // Mensaje de respaldo: llega por correo a Identi vía FormSubmit (sin servidor propio)
+  (function () {
+    var ENDPOINT = "https://formsubmit.co/ajax/db2e78e41a8ec279aa2f6589040f2abd";
+    var f = document.getElementById("form-mensaje");
+    var boton = document.getElementById("m-boton");
+    var estado = document.getElementById("m-estado");
+
+    function ubicacion() {
+      return new Promise(function (ok) {
+        if (!document.getElementById("m-ubic").checked || !navigator.geolocation) return ok(null);
+        navigator.geolocation.getCurrentPosition(function (p) { ok(p.coords); }, function () { ok(null); },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+      });
+    }
+
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      estado.className = "estado"; estado.textContent = "";
+      var tel = document.getElementById("m-tel").value.trim();
+      if (tel.replace(/[^0-9]/g, "").length < 7) {
+        estado.className = "estado error"; estado.textContent = "Déjanos un teléfono para que la familia te pueda contactar.";
+        return;
+      }
+      boton.disabled = true; boton.textContent = "Enviando…";
+      ubicacion().then(function (c) {
+        var data = {};
+        new FormData(f).forEach(function (v, k) { if (v) data[k] = v; });
+        data["Mascota"] = "Canela";
+        data["Dueño"] = "Santiago Vasquez · 323 464 6085";
+        data["Ubicación"] = c ? "https://maps.google.com/?q=" + c.latitude.toFixed(6) + "," + c.longitude.toFixed(6) : "No compartida";
+        data._subject = "🐾 Encontraron a Canela (placa Identi)";
+        data._template = "table";
+        data._captcha = "false";
+        return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
+            if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || r.status);
+          }); });
+      }).then(function () {
+        f.classList.add("oculto");
+        document.getElementById("m-gracias").classList.remove("oculto");
+      }).catch(function () {
+        estado.className = "estado error";
+        estado.textContent = "No se pudo enviar. Revisa tu conexión, o usa el botón de SMS de arriba.";
+        boton.disabled = false; boton.textContent = "Enviar mensaje";
+      });
+    });
+  })();
+</script>
+</body>
+</html>
